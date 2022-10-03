@@ -29,7 +29,7 @@ class CreatePTrabajosTable extends Migration
             $table->string('periodo_academico', 45);
             $table->string('dedicacion', 45);
             $table->string('tipo_vinculado', 45);
-            $table->string('fecha_elaboracion', 45);
+            $table->timestamp('fecha_elaboracion', 45);
 
             $table->index(["id_profesor"], 'fk_plan_de_trabajo_profesor1_idx');
 

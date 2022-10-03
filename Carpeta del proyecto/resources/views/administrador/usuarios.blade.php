@@ -17,15 +17,29 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="">
+        <form action="/admin/usuarios" method="post">
+            @csrf
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombres">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="apellido" placeholder="Apellidos">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="pass1" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="pass2" placeholder="Confirmar contraseña">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
             </div>
         </form>
         </div>

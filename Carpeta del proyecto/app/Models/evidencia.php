@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Evidencia extends Model
 {
     use HasFactory;
-    protected $fillable = ['comentario','directorio','fecha_de_carga','porcentaje_avance'];
+    protected $fillable = ['comentario','directorio','fecha_de_carga','hora_de_carga','porcentaje_avance'];
 }

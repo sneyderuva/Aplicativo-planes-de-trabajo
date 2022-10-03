@@ -26,8 +26,8 @@ class CreateAprobacionPlanesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('id_actividad_ap');
-            $table->date('fecha_aprobacion');
             $table->integer('id_usuario_aprobacion');
+            $table->timestamp('fecha_aprobacion');
             $table->char('aprobado', 2)->default('NO');
 
             $table->index(["id_actividad_ap"], 'fk_aprobacion_planes_actividades1_idx');

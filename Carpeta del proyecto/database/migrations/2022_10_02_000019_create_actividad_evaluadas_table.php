@@ -27,8 +27,6 @@ class CreateActividadEvaluadasTable extends Migration
             $table->increments('id');
             $table->integer('actividades_id_actividad');
             $table->integer('rubrica_id_rubrica');
-            $table->string('id_rubrica', 45);
-            $table->string('id_actividad', 45);
 
             $table->index(["rubrica_id_rubrica"], 'fk_actividad_evaluar_rubrica1_idx');
 

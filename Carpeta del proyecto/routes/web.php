@@ -23,11 +23,10 @@ Route::get('/', function () {
 });
 
 
-
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
     Route::get('/',[AdminController::class,'index']);
     Route::get('/usuarios',[AdminController::class,'usuarios']);
-    
+    Route::post('/usuarios',[ProfileController::class,'store']);
 });
 Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/', [ProfesorController::class,'resumen']);

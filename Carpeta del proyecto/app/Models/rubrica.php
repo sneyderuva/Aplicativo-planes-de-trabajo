@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class rubrica extends Model
 {
     use HasFactory;
-    protected $fillable=['concepto'];
+    protected $fillable=['concepto','fecha'];
 }

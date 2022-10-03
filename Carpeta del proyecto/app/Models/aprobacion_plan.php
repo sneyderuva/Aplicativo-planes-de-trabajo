@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class aprobacion_plan extends Model
 {
     use HasFactory;
-    protected $fillable = ['fecha_aprobacion'];
+    protected $fillable = ['fecha_aprobacion','aprobado'];
 }

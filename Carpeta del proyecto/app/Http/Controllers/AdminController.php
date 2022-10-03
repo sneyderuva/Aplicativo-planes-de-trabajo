@@ -12,4 +12,5 @@ class AdminController extends Controller
     public function usuarios(){
         return view('administrador/usuarios');
     }
+
 }

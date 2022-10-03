@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class opcion extends Model
+class dependencia extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre','valor'];
+    protected $fillable = ['nombre_dependencia'];
 
 }

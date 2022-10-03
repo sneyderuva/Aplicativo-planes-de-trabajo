@@ -12,7 +12,7 @@ class CreateDependenciaTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'dependencia';
+    public $tableName = 'dependencias';
 
     /**
      * Run the migrations.

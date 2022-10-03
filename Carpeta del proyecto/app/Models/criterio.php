@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class criterios_eval extends Model
+class criterio extends Model
 {
     use HasFactory;
     protected $fillable = ['criterio'];
