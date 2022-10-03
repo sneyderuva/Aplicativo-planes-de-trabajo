@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\EvaluadorController;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,33 +18,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('index');
+});
+
 
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
-    Route::get('/', function () {
-        return view('admin');
-    });
-    Route::get('/usuarios', function () {
-        return view('usuarios');
-    });
+    Route::get('/',[AdminController::class,'index']);
+    Route::get('/usuarios',[AdminController::class,'usuarios']);
     
 });
-Route::group(['prefix'=>'profesor','as'=>'profesor'],function(){
-    Route::get('/', function () {
-        return view('profesor.profesor');
-    });
-    Route::get('/resumen', function () {
-        return view('profesor.resumen');
-    });
+Route::group(['prefix'=>'p','as'=>'p'],function(){
+    Route::get('/', [ProfesorController::class,'resumen']);
+    Route::get('/u/{id}',[ProfileController::class,'index']);
+    Route::get('/u/{id}/editar',[ProfileController::class,'editar']);
+    Route::get('/a', [ProfesorController::class,'mis_actividades']);
     
 });
 
 Route::group(['prefix'=>'evaluador','as'=>'evaluador'],function(){
-    Route::get('/', function () {
-        return view('evaluador.evaluador');
-    });
-    Route::get('/resumen', function () {
-        return view('evaluador.resumen');
-    });
+    Route::get('/', [EvaluadorController::class,'index']);
+    Route::get('/e', [EvaluadorController::class, 'evaluacion']);
     
 });

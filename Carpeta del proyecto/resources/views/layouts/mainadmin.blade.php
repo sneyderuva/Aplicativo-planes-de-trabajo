@@ -43,7 +43,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{asset('/dash/index.html')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Resumen</span></a>
+                    <span>Usuarios</span></a>
             </li>
 
             <!-- Divider -->

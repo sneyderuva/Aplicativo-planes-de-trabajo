@@ -48,10 +48,10 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+ <!-- #region -->
             <!-- Heading -->
             <div class="sidebar-heading">
-                Evaluación
+                Interfaz
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -59,14 +59,61 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Profesores</span>
+                    <span>Configuración</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header"> Tipo de profesores</h6>
-                        <a class="collapse-item" href="{{asset('/dash/buttons.html')}}">Provisionales</a>
-                        <a class="collapse-item" href="{{asset('/dash/cards.html')}}">Transitorios</a>
-                        <a class="collapse-item" href="{{asset('/dash/cards.html')}}">Investigación</a>
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/buttons.html')}}">Buttons</a>
+                        <a class="collapse-item" href="{{asset('/dash/cards.html')}}">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilidades</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-color.html')}}">Colors</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-border.html')}}">Borders</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-animation.html')}}">Animations</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-other.html')}}">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Sistema
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Páginas</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/login.html')}}">Login</a>
+                        <a class="collapse-item" href="{{asset('/dash/register.html')}}">Register</a>
+                        <a class="collapse-item" href="{{asset('/dash/forgot-password.html')}}">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/404.html')}}">404 Page</a>
+                        <a class="collapse-item" href="{{asset('/dash/blank.html')}}">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -75,14 +122,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{asset('/dash/charts.html')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Progreso</span></a>
+                    <span>Acceso</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{asset('/dash/tables.html')}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Informes</span></a>
+                    <span>Control de usuarios</span></a>
             </li>
 
             <!-- Divider -->
@@ -92,6 +139,9 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
+            
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -274,7 +324,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nombre Evaluador</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nombre administrador</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{asset('/dash/img/undraw_profile.svg')}}">
                             </a>
