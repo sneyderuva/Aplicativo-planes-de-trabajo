@@ -3,13 +3,72 @@
 <title>Profesor</title>
 @endsection
 @section('contenido')
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Resumen</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregarpt"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Agregar plan de trabajo</a>
                     </div>
-
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalAgregarpt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document"> 
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear nuevo plan de trabajo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/p" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="row">
+                                    @if($message = Session::get('ErrorInsert'))
+                                        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="p1">Selecciona el periodo académico</option>
+                                        <option value="2023-A">2023-A</option>
+                                        <option value="2022-B">2022-B</option>
+                                        <option value="2022-A">2022-A</option>
+                                        <option value="2021-B">2021-B</option>
+                                        <option value="2021-A">2021-A</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="p2">Selecciona el tipo de vinculación</option>
+                                        <option value="r1-indefinido">Término indefinido</option>
+                                        <option value="r2-fijo">Término fijo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="p3">Selecciona la dedicación</option>
+                                        <option value="r1-tiempo_completo">Tiempo completo</option>
+                                        <option value="r2-medio_timepo">Medio tiempo</option>
+                                        <option value="r2-catedra">Cátedra</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
                     <!-- Content Row -->
                     <div class="row">
 

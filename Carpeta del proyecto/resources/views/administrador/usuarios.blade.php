@@ -7,9 +7,10 @@
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"data-toggle="modal" data-target="#ModalAgregar">
             <i class="fas fa-user fa-sm text-white-50"></i> Agregar Usuario</a>
     </div>
+    
     <!-- Modal -->
     <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"> 
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Agregar usuario</h5>
@@ -20,21 +21,32 @@
         <form action="/admin/usuarios" method="post">
             @csrf
             <div class="modal-body">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombres">
+                <div class="row">
+                    @if($message = Session::get('ErrorInsert'))
+                        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="apellido" placeholder="Apellidos">
+                    <input type="text" class="form-control" name="nombres" placeholder="Nombres">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control" name="pass1" placeholder="Contraseña">
+                    <input type="password" class="form-control" name="contraseña" placeholder="Contraseña">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="pass2" placeholder="Confirmar contraseña">
+                    <input type="password" class="form-control" name="confirmar.contraseña" placeholder="Confirmar contraseña">
                 </div>
             </div>
             <div class="modal-footer">
@@ -45,4 +57,14 @@
         </div>
     </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            @if($message = Session::get('ErrorInsert'))
+                $("#ModalAgregar").modal('show');
+            @endif
+        });
+    </script>
+
 @endsection

@@ -117,6 +117,7 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
+            'Laraveles\\Spanish\\' => 18,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
@@ -320,8 +321,8 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -370,6 +371,10 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
         'League\\CommonMark\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
+        ),
+        'Laraveles\\Spanish\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laraveles/spanish/src',
         ),
         'Laravel\\Tinker\\' => 
         array (
@@ -503,7 +508,11 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\EvaluadorController' => __DIR__ . '/../..' . '/app/Http/Controllers/EvaluadorController.php',
+        'App\\Http\\Controllers\\ProfesorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfesorController.php',
+        'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -514,6 +523,23 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\actividad' => __DIR__ . '/../..' . '/app/Models/actividad.php',
+        'App\\Models\\aprobacion_plan' => __DIR__ . '/../..' . '/app/Models/aprobacion_plan.php',
+        'App\\Models\\categoria' => __DIR__ . '/../..' . '/app/Models/categoria.php',
+        'App\\Models\\criterio' => __DIR__ . '/../..' . '/app/Models/criterio.php',
+        'App\\Models\\dependencia' => __DIR__ . '/../..' . '/app/Models/dependencia.php',
+        'App\\Models\\evaluador' => __DIR__ . '/../..' . '/app/Models/evaluador.php',
+        'App\\Models\\facultad' => __DIR__ . '/../..' . '/app/Models/facultad.php',
+        'App\\Models\\opcion' => __DIR__ . '/../..' . '/app/Models/opcion.php',
+        'App\\Models\\opcion_evaluacion' => __DIR__ . '/../..' . '/app/Models/opcion_evaluacion.php',
+        'App\\Models\\p_academico' => __DIR__ . '/../..' . '/app/Models/p_academico.php',
+        'App\\Models\\p_trabajo' => __DIR__ . '/../..' . '/app/Models/p_trabajo.php',
+        'App\\Models\\profesor' => __DIR__ . '/../..' . '/app/Models/profesor.php',
+        'App\\Models\\resultado' => __DIR__ . '/../..' . '/app/Models/resultado.php',
+        'App\\Models\\rubrica' => __DIR__ . '/../..' . '/app/Models/rubrica.php',
+        'App\\Models\\tarea' => __DIR__ . '/../..' . '/app/Models/tarea.php',
+        'App\\Models\\tipo_actividad' => __DIR__ . '/../..' . '/app/Models/tipo_actividad.php',
+        'App\\Models\\tipo_documento' => __DIR__ . '/../..' . '/app/Models/tipo_documento.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -2704,6 +2730,8 @@ class ComposerStaticInit3347618a243051218052a5bc1722d693
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
+        'Laraveles\\Spanish\\Commands\\InstallLang' => __DIR__ . '/..' . '/laraveles/spanish/src/Commands/InstallLang.php',
+        'Laraveles\\Spanish\\SpanishServiceProvider' => __DIR__ . '/..' . '/laraveles/spanish/src/SpanishServiceProvider.php',
         'League\\CommonMark\\CommonMarkConverter' => __DIR__ . '/..' . '/league/commonmark/src/CommonMarkConverter.php',
         'League\\CommonMark\\ConverterInterface' => __DIR__ . '/..' . '/league/commonmark/src/ConverterInterface.php',
         'League\\CommonMark\\Delimiter\\Delimiter' => __DIR__ . '/..' . '/league/commonmark/src/Delimiter/Delimiter.php',

@@ -13,4 +13,8 @@ class ProfesorController extends Controller
     public function mis_actividades(){
         return view('profesor.actividades');
     }
+
+    public function store(){
+        return back()->withErrors;
+    }
 }
