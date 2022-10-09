@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {

@@ -19,7 +19,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/p" method="post">
+                        <form action="/p" method="get">
                             @csrf
                             <div class="modal-body">
                                 <div class="row">
@@ -34,7 +34,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" name="p_academico">
                                         <option value="p1">Selecciona el periodo académico</option>
                                         <option value="2023-A">2023-A</option>
                                         <option value="2022-B">2022-B</option>
@@ -45,14 +45,14 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" name="viculacion">
                                         <option value="p2">Selecciona el tipo de vinculación</option>
                                         <option value="r1-indefinido">Término indefinido</option>
                                         <option value="r2-fijo">Término fijo</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" name="dedicacion">
                                         <option value="p3">Selecciona la dedicación</option>
                                         <option value="r1-tiempo_completo">Tiempo completo</option>
                                         <option value="r2-medio_timepo">Medio tiempo</option>
@@ -66,6 +66,26 @@
                                 <button type="submit" class="btn btn-primary">Agregar</button>
                             </div>
                         </form>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- modal -->
+                    <div class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregado correctamente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                         </div>
                     </div>
                     </div>
@@ -386,4 +406,38 @@
 
                         </div>
                     </div>
+                    
+                    <script src="{{asset('/js/app.js')}}"></script>
+    <script src="{{asset('/sweetalert2/dist/sweetalert2.all.min.js')}}">Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+            )</script>
+    <link rel="stylesheet" href="{{asset('/sweetalert2/dist/sweetalert2.min.css')}}">
+
+    <script>
+        Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+            )
+    </script>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            @if($message = Session::get('ErrorInsert'))
+                $("#ModalAgregarpt").modal('show');
+            
+            @elseif($message = Session::get('Correcto'))
+            Swal.fire({
+            title: '¡Perfecto!',
+            text: 'Agregado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+            });
+            @endif
+        });
+    </script>
+
 @endsection

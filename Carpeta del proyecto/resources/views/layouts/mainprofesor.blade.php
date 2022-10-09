@@ -32,65 +32,34 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{asset('/dash/index.html')}}">
-                <div><img src="https://th.bing.com/th/id/OIP.-15xZbOToZO1aLOisAqg4AHaEK?pid=ImgDet&rs=1" width="100%" height="100%"></div>
-                <div class="sidebar-brand-text mx-3">UNITRÓPICO</div>
+                <div><img src="{{asset('/dash/img/logo_w_u.png')}}" width="60%" height="60%"></div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{asset('/dash/index.html')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Resumen</span></a>
+                    <span>Progeso</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
- <!-- #region -->
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Actividades
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Mis ctividades</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header"> Mis tareas:</h6>
-                        <a class="collapse-item" href="{{asset('/dash/buttons.html')}}">Buttons</a>
-                        <a class="collapse-item" href="{{asset('/dash/cards.html')}}">Cards</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="{{asset('/dash/tables.html')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Planes de trabajo</span></a>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Evidencias</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="{{asset('/dash/utilities-color.html')}}">Colors</a>
-                        <a class="collapse-item" href="{{asset('/dash/utilities-border.html')}}">Borders</a>
-                        <a class="collapse-item" href="{{asset('/dash/utilities-animation.html')}}">Animations</a>
-                        <a class="collapse-item" href="{{asset('/dash/utilities-other.html')}}">Other</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Mis actividades</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -99,37 +68,9 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Resultados de evaluación</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="{{asset('/dash/login.html')}}">Login</a>
-                        <a class="collapse-item" href="{{asset('/dash/register.html')}}">Register</a>
-                        <a class="collapse-item" href="{{asset('/dash/forgot-password.html')}}">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="{{asset('/dash/404.html')}}">404 Page</a>
-                        <a class="collapse-item" href="{{asset('/dash/blank.html')}}">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{asset('/dash/charts.html')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Progreso</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{asset('/dash/tables.html')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Informes</span></a>
+                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Resultados</span></a>
             </li>
 
             <!-- Divider -->
@@ -139,9 +80,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            
-            
 
         </ul>
         <!-- End of Sidebar -->
@@ -422,6 +360,22 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('/dash/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/dash/js/demo/chart-pie-demo.js')}}"></script>
+    
+    <script src="{{asset('/js/app.js')}}"></script>
+    <script src="{{asset('/sweetalert2/dist/sweetalert2.all.min.js')}}">Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+            )</script>
+    <link rel="stylesheet" href="{{asset('/sweetalert2/dist/sweetalert2.min.css')}}">
+
+    <script>
+        Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+            )
+    </script>
 
 </body>
 

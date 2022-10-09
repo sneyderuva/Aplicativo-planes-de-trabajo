@@ -46,7 +46,7 @@
                     <input type="password" class="form-control" name="contraseña" placeholder="Contraseña">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="confirmar.contraseña" placeholder="Confirmar contraseña">
+                    <input type="password" class="form-control" name="confirmar-contraseña" placeholder="Confirmar contraseña">
                 </div>
             </div>
             <div class="modal-footer">
@@ -63,6 +63,14 @@
         $(document).ready(function(){
             @if($message = Session::get('ErrorInsert'))
                 $("#ModalAgregar").modal('show');
+            
+            @elseif($message = Session::get('Correcto'))
+            Swal.fire({
+            title: '¡Perfecto!',
+            text: 'Agregado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+            });
             @endif
         });
     </script>
