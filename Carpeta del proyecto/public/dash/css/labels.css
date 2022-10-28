@@ -1,0 +1,34 @@
+.form-control-anim {
+    position: relative;
+    width: 100%;
+  }
+.form-control-anim input{
+
+    width: 100%;
+    padding: 10px;
+    border: 1px #20884f;
+    border-radius: 0.35rem;
+    outline: none;
+    color: black;
+    font-size: 1em;
+}
+.form-control-anim span{
+    position:absolute;
+    left: 0;
+    padding: 10px;
+    margin-left: 20px;
+    pointer-events: none;
+    font-size: 1em;
+    color: black;
+    text-transform: uppercase;
+}
+.form-control-anim::valid ~ span,
+.form-control-anim input:focus ~ span{
+    color:aqua;
+    transform: translateX(10 px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: gray;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+}

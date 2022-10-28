@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rubrica extends Model
+class tipo_vinculacion extends Model
 {
     use HasFactory;
-    protected $fillable=['concepto','fecha'];
+    protected $fillable = ['nombre'];
 }
- 

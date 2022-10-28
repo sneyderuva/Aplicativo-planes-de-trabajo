@@ -31,18 +31,22 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{asset('/dash/index.html')}}">
-                <div><img src="{{asset('/dash/img/logo_w_u.png')}}" width="60%" height="60%"></div>
+            <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{asset('/dash/index.html')}}">
+                <div><img src="{{asset('/dash/img/Logo_w_u.png')}}" width="180" id="logo"></div>
             </a>
-
+            
+            <p></p>         
+            <p></p>
+            <p></p>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+                            
+            
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{asset('/dash/index.html')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Progeso</span></a>
+                    <i class="fas fa-fw fa-archive"></i>
+                    <span>Progreso</span></a>
             </li>
 
             <!-- Heading -->
@@ -361,21 +365,9 @@
     <script src="{{asset('/dash/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/dash/js/demo/chart-pie-demo.js')}}"></script>
     
-    <script src="{{asset('/js/app.js')}}"></script>
-    <script src="{{asset('/sweetalert2/dist/sweetalert2.all.min.js')}}">Swal.fire(
-            'The Internet?',
-            'That thing is still around?',
-            'question'
-            )</script>
-    <link rel="stylesheet" href="{{asset('/sweetalert2/dist/sweetalert2.min.css')}}">
+    <script src="{{asset('/dash/vendor/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
 
-    <script>
-        Swal.fire(
-            'The Internet?',
-            'That thing is still around?',
-            'question'
-            )
-    </script>
+    @yield('scripts')
 
 </body>
 

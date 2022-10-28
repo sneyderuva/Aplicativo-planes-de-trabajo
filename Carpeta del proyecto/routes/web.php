@@ -18,20 +18,24 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
+Route::get('/', [ProfesorController::class,'resumen']);
+Route::get('/u',[ProfesorController::class,'index']);
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
     Route::get('/',[AdminController::class,'index']);
-    Route::get('/usuarios',[AdminController::class,'usuarios']);
-    Route::post('/usuarios',[ProfileController::class,'store']);
+    Route::get('/usuarios',[ProfileController::class,'index']);
+    Route::resource('/usuarios',ProfileController::class);
+    Route::delete('/usuarios/{id}',[ProfileController::class,'destroy']);
+    Route::post('/usuarios/edit',[ProfileController::class,'editarUsuario']);
+
 });
 Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/', [ProfesorController::class,'resumen']);
-    Route::get('/u/{id}',[ProfileController::class,'index']);
-    Route::get('/u/{id}/editar',[ProfileController::class,'editar']);
+    Route::post('/', [ProfesorController::class,'store']);
+    
+    
+    Route::get('/{id}/editar',[ProfileController::class,'editar']);
     Route::get('/a', [ProfesorController::class,'mis_actividades']);
     
 });

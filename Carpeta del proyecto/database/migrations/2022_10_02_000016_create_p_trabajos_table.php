@@ -26,7 +26,7 @@ class CreatePTrabajosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('id_profesor');
-            $table->string('periodo_academico', 45);
+            $table->string('p_academico', 45);
             $table->string('dedicacion', 45);
             $table->string('tipo_vinculado', 45);
             $table->timestamp('fecha_elaboracion', 45);
