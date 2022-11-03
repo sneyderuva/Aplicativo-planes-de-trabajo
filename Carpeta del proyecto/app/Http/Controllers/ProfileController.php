@@ -17,23 +17,32 @@ class ProfileController extends Controller
         ->orderBy('id','DESC')
         ->get();
         $usuarios = \DB::table('users')
-        ->select('users.*')
+        
+        ->join('tipo_usuarios', 'tipo_usuarios.id', '=', 'users.id_tipo_usuario')
+        ->join('tipo_documentos', 'tipo_documentos.id', '=', 'users.id_tipo_documento')
+        ->select('tipo_usuarios.nombre_tipo','users.*','tipo_documentos.n_tipo_documento')
         ->orderBy('id','DESC')
         ->get();
         $tipousuarios = \DB::table('tipo_usuarios')
         ->select('tipo_usuarios.*')
         ->get();
+        $tipo_documentos = \DB::table('tipo_documentos')
+        ->select('tipo_documentos.*')
+        ->get();
         return view('administrador.usuarios')
         ->with('usuarios',$usuarios)
         ->with('tipousuarios',$tipousuarios)
-        ->with('semestres',$semestres);
+        ->with('semestres',$semestres)
+        ->with('tipo_documentos',$tipo_documentos);
            
     }
 
     public function store(Request $request){
         
         $validator = Validator::make($request->all(),
-        ['tipo_usuario'=>'required|string|required_without',
+        ['tipo_usuario'=>'required',
+        'tipo_documento'=>'required',
+        'n_documento'=>'required|min:5|max:12',
         'email'=>'required',
         'nombres'=>'required|string|min:3|max:25',
         'apellidos'=>'required|string|min:3|max:25',
@@ -45,15 +54,17 @@ class ProfileController extends Controller
             ->with('ErrorInsert','Debes llenar los campos correctamente')
             ->withErrors($validator);
         }else{
+
             $usuario = User::create([
                 'nombres'=>$request->nombres,
+                'n_documento'=>$request->n_documento,
+                'id_tipo_documento'=>$request->tipo_documento,
                 'apellidos'=>$request->apellidos,
-                'tipo_usuario'=>$request->tipo_usuario,
+                'id_tipo_usuario'=>$request->tipo_usuario,
                 'email'=>$request->email,
                 'password'=>$request->contraseña
 
             ]);
-            
             return back()->with('Correcto','Registrado correctamente');
             
         } 
@@ -93,20 +104,20 @@ class ProfileController extends Controller
         $user = User::find($request->id);
         $semestre = Semestre::find($request->id);
         $validator = Validator::make($request->all(),
-        ['tipo_usuario'=>'required',
-        'nombres'=>'required|min:3|max:25',
-        'apellidos'=>'required|min:3|max:25' ]);
+        ['ntipo_usuario'=>'required',
+        'nnombres'=>'required|min:3|max:25',
+        'napellidos'=>'required|min:3|max:25' ]);
 
         if($validator -> fails()){
             return back()->withInput()
             ->with('ErrorInsert','Edición no completada')
             ->withErrors($validator);
         }else{
-            $user->nombres = $request->nombres;
-            $user->apellidos = $request->apellidos;
-            $user->email = $request->email;
+            $user->nombres = $request->nnombres;
+            $user->apellidos = $request->napellidos;
+            $user->email = $request->nemail;
             $user->id = $request->id;
-            $user->tipo_usuario = $request->tipo_usuario;
+            $user->id_tipo_usuario = $request->ntipo_usuario;
             $validator2 = Validator::make($request->all(),
             ['nuevacontraseña'=>'required|min:8|required_with:confirmarnuevacontraseña|same:confirmarnuevacontraseña',
             'confirmarnuevacontraseña'=>'required|min:8']);
@@ -118,4 +129,6 @@ class ProfileController extends Controller
             return back()->with('Editado','Actualizado Correctamente');
         }
     }
+
+    
 }

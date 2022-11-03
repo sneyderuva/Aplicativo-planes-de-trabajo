@@ -18,7 +18,10 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('/dash/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/css/labels.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/navtab/bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{asset('/dash/navtab/bootstrap.bundle.min.js')}}" defer></script>
 
 </head>
 
@@ -31,12 +34,13 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{asset('/dash/index.html')}}">
-                <div><img src="{{asset('/dash/img/Logo_w_u.png')}}" width="180" id="logo"></div>
+            <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{ url('/')}}">
+                <div><img src="{{asset('/dash/img/LogoUnitropicoBlanco.png')}}" width="180" id="logo"></div>
             </a>
             
             <p></p>         
             <p></p>
+            <p></p>         
             <p></p>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -44,20 +48,20 @@
             
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                <a class="nav-link" href="{{url('/')}}">
                     <i class="fas fa-fw fa-archive"></i>
                     <span>Progreso</span></a>
             </li>
 
             <!-- Heading -->
             <li class="nav-item">
-                <a class="nav-link" href="{{asset('/dash/tables.html')}}">
+                <a class="nav-link" href="{{url('/p')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Planes de trabajo</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                <a class="nav-link" href="{{url('/p/a')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Mis actividades</span></a>
             </li>
@@ -72,7 +76,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                <a class="nav-link" href="{{url('/p/r')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Resultados</span></a>
             </li>
@@ -348,6 +352,7 @@
         </div>
     </div>
 
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('/dash/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('/dash/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -358,14 +363,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('/dash/js/sb-admin-2.min.js')}}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{asset('/dash/vendor/chart.js/Chart.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('/dash/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('/dash/js/demo/chart-pie-demo.js')}}"></script>
-    
     <script src="{{asset('/dash/vendor/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
+
+ 
 
     @yield('scripts')
 

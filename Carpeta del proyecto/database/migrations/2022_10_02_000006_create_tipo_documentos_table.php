@@ -25,7 +25,7 @@ class CreateTipoDocumentosTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('nombre', 45);
+            $table->string('n_tipo_documento', 45);
         });
     }
 

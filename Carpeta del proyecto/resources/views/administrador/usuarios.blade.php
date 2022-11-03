@@ -59,20 +59,20 @@
                                     <tbody>
                                         
                                         @foreach($usuarios as $usuario)
-                                            @if($usuario->tipo_usuario== "Evaluador")
+                                            @if($usuario->id_tipo_usuario== "4")
 
                                             
                                                 <tr>
-                                                    <td>{{ $usuario->id}}</td>
+                                                    <td>{{ $usuario->n_documento}}</td>
                                                     <td>{{$usuario->nombres}}</td>
                                                     <td>{{$usuario->apellidos}}</td>
                                                     <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->tipo_usuario}}</td>
+                                                    <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
                                                         <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
                                                             data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->tipo_usuario }}"
+                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
                                                             data-apellidos="{{ $usuario->apellidos }}"
                                                             data-nombres="{{ $usuario->nombres }}"
                                                             data-email="{{ $usuario->email }}"
@@ -110,18 +110,18 @@
                                     </thead>
                                     <tbody>
                                         @foreach($usuarios as $usuario)
-                                            @if($usuario->tipo_usuario== "Profesor ocasional")
+                                            @if($usuario->id_tipo_usuario=="3")
                                                 <tr>
-                                                    <td>{{ $usuario->id}}</td>
+                                                    <td>{{$usuario->n_documento}}</td>
                                                     <td>{{$usuario->nombres}}</td>
                                                     <td>{{$usuario->apellidos}}</td>
                                                     <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->tipo_usuario}}</td>
+                                                    <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
                                                         <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
                                                             data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->tipo_usuario }}"
+                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
                                                             data-apellidos="{{ $usuario->apellidos }}"
                                                             data-nombres="{{ $usuario->nombres }}"
                                                             data-email="{{ $usuario->email }}"
@@ -159,17 +159,17 @@
                                     </thead>
                                     <tbody>
                                         @foreach($usuarios as $usuario)
-                                            @if($usuario->tipo_usuario== "Profesor transitorio")
-                                                    <td>{{ $usuario->id}}</td>
+                                            @if($usuario->id_tipo_usuario== "1")
+                                                    <td>{{$usuario->n_documento}}</td>
                                                     <td>{{$usuario->nombres}}</td>
                                                     <td>{{$usuario->apellidos}}</td>
                                                     <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->tipo_usuario}}</td>
+                                                    <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
                                                         <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
                                                             data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->tipo_usuario }}"
+                                                            
                                                             data-apellidos="{{ $usuario->apellidos }}"
                                                             data-nombres="{{ $usuario->nombres }}"
                                                             data-email="{{ $usuario->email }}"
@@ -207,18 +207,18 @@
                                     </thead>
                                     <tbody>
                                         @foreach($usuarios as $usuario)
-                                            @if($usuario->tipo_usuario== "Profesor de cátedra")
+                                            @if($usuario->id_tipo_usuario== "2")
                                                 <tr>
-                                                    <td>{{ $usuario->id}}</td>
+                                                    <td>{{ $usuario->n_documento}}</td>
                                                     <td>{{$usuario->nombres}}</td>
                                                     <td>{{$usuario->apellidos}}</td>
                                                     <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->tipo_usuario}}</td>
+                                                    <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
                                                         <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
                                                             data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->tipo_usuario }}"
+                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
                                                             data-apellidos="{{ $usuario->apellidos }}"
                                                             data-nombres="{{ $usuario->nombres }}"
                                                             data-email="{{ $usuario->email }}"
@@ -256,18 +256,18 @@
                                     </thead>
                                     <tbody>
                                         @foreach($usuarios as $usuario)
-                                            @if($usuario->tipo_usuario== "Administrador")
+                                            @if($usuario->id_tipo_usuario=="5")
                                                 <tr>
-                                                    <td>{{ $usuario->id}}</td>
+                                                    <td>{{ $usuario->n_documento}}</td>
                                                     <td>{{$usuario->nombres}}</td>
                                                     <td>{{$usuario->apellidos}}</td>
                                                     <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->tipo_usuario}}</td>
+                                                    <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
                                                         <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
-                                                            data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->tipo_usuario }}"
+                                                            data-id="{{$usuario->id}}"
+                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
                                                             data-apellidos="{{ $usuario->apellidos }}"
                                                             data-nombres="{{ $usuario->nombres }}"
                                                             data-email="{{ $usuario->email }}"
@@ -294,8 +294,8 @@
                                 <table class="table col-12">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nombre</th>
+                                            
+                                            <th>Semestre</th>
                                             <th>Fecha inicio</th>
                                             <th>Fecha finalización</th>
                                             <th>&nbsp;</th>
@@ -304,14 +304,13 @@
                                     <tbody>
                                         @foreach($semestres as $semestre)
                                             <tr>
-                                                <td>{{$semestre->id}}</td>
+                                                
                                                 <td>{{$semestre->nombre_semestre}}</td>
                                                 <td>{{$semestre->inicio}}</td>
                                                 <td>{{$semestre->final}}</td>
                                                 <td>
                                                     <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
                                                         data-id="{{ $usuario->id }}"
-                                                        data-tipo="{{ $usuario->tipo_usuario }}"
                                                         data-apellidos="{{ $usuario->apellidos }}"
                                                         data-nombres="{{ $usuario->nombres }}"
                                                         data-email="{{ $usuario->email }}"
@@ -369,12 +368,23 @@
                             <select name="tipo_usuario" id="intipo_usuario" required="required" class="form-select" aria-label="Default select example">
                                 <option  value="">Tipo de usuario</option>
                                 @foreach ($tipousuarios as $tipousuario)
-                                    <option value="{{ $tipousuario->nombre }}">{{ $tipousuario->nombre }}</option>
+                                    <option value="{{$tipousuario->id}}">{{$tipousuario->nombre_tipo}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control-anim" required="required" name="nombres" placeholder="Nombres">
+                            <select name="tipo_documento" id="n_tipo_documento" required="required" class="form-select" aria-label="Default select example">
+                                <option  value="">Tipo de documento</option>
+                                @foreach ($tipo_documentos as $tipo_documento)
+                                    <option value="{{$tipo_documento->id}}">{{$tipo_documento->n_tipo_documento}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" required="required" name="n_documento" placeholder="Número de documento">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" required="required" name="nombres" placeholder="Nombres">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" required="required" name="apellidos" placeholder="Apellidos">
@@ -498,23 +508,23 @@
                             <input class="form-control" type="text" name="id" id="idEdit">
                         </div>
                         <div class="form-group">
-                            <select name="tipo_usuario" id="tipo_usuarioEdit" class="form-select" aria-label="Default select example">
+                            <select name="ntipo_usuario" id="tipo_usuarioEdit" class="form-select" aria-label="Default select example">
                                 <option selected>Tipo de usuario</option>
 
                                 @foreach ($tipousuarios as $tipousuario)
-                                    <option value="{{ $tipousuario->nombre }}">{{ $tipousuario->nombre }}</option>
+                                    <option value="{{ $tipousuario->id }}">{{ $tipousuario->nombre_tipo }}</option>
                                 @endforeach
                             
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" id="nombresEdit">
+                            <input type="text" class="form-control" name="nnombres" placeholder="Nombres" id="nombresEdit">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" id="apellidosedit">
+                            <input type="text" class="form-control" name="napellidos" placeholder="Apellidos" id="apellidosedit">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Email" id="emailEdit">
+                            <input type="email" class="form-control" name="nemail" placeholder="Email" id="emailEdit">
                         </div>
 
                         <div class="form-group">
@@ -577,7 +587,6 @@
                 $("#nombresEdit").val($(this).data('nombres'));
                 $("#apellidosedit").val($(this).data('apellidos'));
                 $("#emailEdit").val($(this).data('email'));
-                
             });
 
             @if($message = Session::get('ErrorInsertSemestre'))

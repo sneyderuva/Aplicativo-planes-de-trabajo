@@ -26,18 +26,16 @@ class CreatePTrabajosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('id_profesor');
-            $table->string('p_academico', 45);
-            $table->string('dedicacion', 45);
-            $table->string('tipo_vinculado', 45);
-            $table->timestamp('fecha_elaboracion', 45);
+            $table->integer('id_semestre', 45);
+            $table->float('horas_semana', 5);
+            $table->float('horas_semestre', 5);
 
-            $table->index(["id_profesor"], 'fk_plan_de_trabajo_profesor1_idx');
-
-
-            $table->foreign('id_profesor', 'fk_plan_de_trabajo_profesor1_idx')
-                ->references('id')->on('profesores')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table->foreign('id_profesor')
+                ->references('id')->on('profesores');
+            $table->foreign('id_p_academico')
+                ->references('id')->on('p_academicos');
+            $table->foreign('id_semestre')
+                ->references('id')->on('semestres');
         });
     }
 

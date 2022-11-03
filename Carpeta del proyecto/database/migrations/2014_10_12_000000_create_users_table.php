@@ -18,10 +18,16 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->string('n_documento')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('tipo_usuario');
-            
+            $table->string('id_tipo_usuario');
+            $table->string('id_tipo_documento');
+
+            $table->foreign('id_tipo_usuario')
+                ->references('id')->on('tipo_usuarios');
+            $table->foreign('id_tipo_documento')
+                ->references('id')->on('tipo_documentos');
         });
     }
 

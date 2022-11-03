@@ -26,15 +26,11 @@ class CreatePAcademicosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('idfacultad');
-            $table->string('nombre', 45);
-
-            $table->index(["idfacultad"], 'fk_Programa academico_facultad1_idx');
+            $table->string('nombre_programa', 45);
 
 
-            $table->foreign('idfacultad', 'fk_Programa academico_facultad1_idx')
-                ->references('id')->on('facultades')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table->foreign('idfacultad')
+                ->references('id')->on('facultades');
         });
     }
 

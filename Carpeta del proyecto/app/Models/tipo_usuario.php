@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_usuario extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre'];
+    protected $fillable = ['n_tipo_documento'];
 }

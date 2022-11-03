@@ -32,11 +32,9 @@ Route::group(['prefix'=>'admin','as'=>'admin'],function(){
 });
 Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/', [ProfesorController::class,'resumen']);
-    Route::post('/', [ProfesorController::class,'store']);
-    
-    
-    Route::get('/{id}/editar',[ProfileController::class,'editar']);
-    Route::get('/a', [ProfesorController::class,'mis_actividades']);
+    Route::get('/a', [ProfesorController::class,'actividades']);
+
+    Route::get('/{id}', [ProfesorController::class,'editPT']);
     
 });
 
