@@ -65,54 +65,79 @@
     <div class="card">
         <h5 class="card-header">Actividades </h5>
         <div class="card-body">
-        <?php $array = array(); $x=0;$n=0;?>
+
+        <?php $array = array(); $x=0;$n=0;$nombres=array();?>
             @foreach($actividades as $actividad)
                 @if($actividad->id_plan_trabajo==$id_p_trabajo) 
                      
-                    <?php 
-                           if($n==0){
-                            $array[$n]=$actividad->id_plan_trabajo;
-                            }else{	
-                        for($j=0;$j<=$n;$j++){	
-                            while(current($array)==$array[$j]){
-                                var_dump($array);
-                                }							
-                            }
-                            $array[$n]=$actividad->id_plan_trabajo;		
-                        }                
-                        
+                    <?php $array[$n]=$actividad->id_tipo_actividad; $nombres[$n]=$actividad->nombre_tipo_actividad;$n+=1;
                     
-                    $array[]=$actividad->id_tipo_actividad;
-                    $n+=1;?>
+                    ?>
+
+                @endif
+            @endforeach
+
+            <?php $array_count = count($array);
+                $duplicate_array = array();
+                for($i=0;$i<$array_count; $i++){
+                    $duplicate_array[$array[$i]]=$array[$i];
+                }
+                    ?>
+            <h1 class="h3 mb-0 text-gray-800">Tienes {{$count_actividades}} actividades y {{$count_tareas}} tareas </h1>
+            @foreach($duplicate_array as $value)
+                @if($value !="")
+                    @foreach($tareas as $tarea)
+                    
                     <div class="row">
                         <div class="bs-component">
-                            <div class="accordion" id="accordion{{$actividad->id}}">
+                            <div class="accordion" id="accordion{{$duplicate_array[$value]}}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{$actividad->id}}" aria-expanded="false" aria-controls="collapseTwo">
-                                            {{$actividad->nombre_tipo_actividad}}
+                                            data-bs-target="#collapse{{$duplicate_array[$value]}}" aria-expanded="false" aria-controls="collapseTwo">
+                                            {{$nombres[$duplicate_array[$value]]}}
                                         </button>
                                     </h2>
-                                    <div id="collapse{{$actividad->id}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    <div id="collapse{{$duplicate_array[$value]}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <strong>This is the second item's accordion body.</strong> It is hidden by
-                                            default, until the collapse plugin adds the appropriate classes that we use to
-                                            style each element. These classes control the overall appearance, as well as the
-                                            showing and hiding via CSS transitions. You can modify any of this with custom
-                                            CSS or overriding our default variables. It's also worth noting that just about
-                                            any HTML can go within the <code>.accordion-body</code>, though the transition
-                                            does limit overflow.
+                                            <div class="d-flex mb-3">
+                                                <div class="me-auto p-2">
+                                                <p class="lead">
+                                                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                                                </p>   
+                                                    
+                                                </div>
+                                                <div class="p-2">
+                                                    
+                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                        <i class="fa fa-paperclip"></i>
+                                                </div>
+                                                <div class="p-2">
+                                                    
+                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                        <i class="fa fa-edit"></i>
+                                                </div>
+                                                <div class="p-2">
+                                                    
+                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php $x++;?>
+                    
                 @endif
-             @endforeach
-             <?php var_dump(array_keys($array)); ?>
+                
+            @endforeach
+                    
+             
         </div>
         
     </div>

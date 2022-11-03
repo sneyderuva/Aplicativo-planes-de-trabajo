@@ -48,13 +48,15 @@ class ProfesorController extends Controller
             ->orderBy('id','ASC')
             ->get();     
         $count_p_trabajos = $p_trabajos->count();
+        $count_actividades = $actividades->count();
         return view('profesor.resumen')
         ->with('semestres',$semestres)
         ->with('usuarios',$usuarios)
         ->with('vinculaciones',$vinculaciones)
         ->with('dedicaciones',$dedicaciones)
         ->with('p_trabajos',$p_trabajos)
-        ->with('count_p_trabajos',$count_p_trabajos);
+        ->with('count_p_trabajos',$count_p_trabajos)
+        ->with('count_actividades',$count_actividades);
     }
 
     public function actividades(){
@@ -113,13 +115,24 @@ class ProfesorController extends Controller
             ->get();   
 
         $actividades = \DB::table('actividades')
+            ->where('actividades.id_plan_trabajo','=',$id_p_trabajo)
             ->join('tipo_actividades','tipo_actividades.id','=','actividades.id_tipo_actividad')
             ->select('actividades.*','tipo_actividades.nombre_tipo_actividad')
             
             ->orderBy('id','DESC')
             ->get();
+        
+        $tareas = \DB::table('tareas')
+            
+            ->where('tareas.id_p_trabajo','=',$id_p_trabajo)
+            ->join('actividades','actividades.id','=','tareas.id_actividad')
+            ->join('tipo_actividades','tipo_actividades.id','=','actividades.id_tipo_actividad')
+            ->select('tareas.*')
+            ->orderBy('id','DESC')
+            ->get();
 
-
+        $count_actividades = $actividades->count();
+        $count_tareas = $tareas->count();
         $p_trabajos = \DB::table('p_trabajos')
         
             ->join('profesores', 'profesores.id', '=', 'p_trabajos.id_profesor')
@@ -145,6 +158,9 @@ class ProfesorController extends Controller
         ->with('id_p_trabajo',$id_p_trabajo)
         ->with('p_trabajos',$p_trabajos)
         ->with('actividades',$actividades)
+        ->with('count_actividades',$count_actividades)
+        ->with('tareas',$tareas)
+        ->with('count_tareas',$count_tareas)
         ;
     }
 
