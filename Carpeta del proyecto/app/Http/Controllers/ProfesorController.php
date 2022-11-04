@@ -48,7 +48,6 @@ class ProfesorController extends Controller
             ->orderBy('id','ASC')
             ->get();     
         $count_p_trabajos = $p_trabajos->count();
-        $count_actividades = $actividades->count();
         return view('profesor.resumen')
         ->with('semestres',$semestres)
         ->with('usuarios',$usuarios)
@@ -56,7 +55,7 @@ class ProfesorController extends Controller
         ->with('dedicaciones',$dedicaciones)
         ->with('p_trabajos',$p_trabajos)
         ->with('count_p_trabajos',$count_p_trabajos)
-        ->with('count_actividades',$count_actividades);
+        ;
     }
 
     public function actividades(){

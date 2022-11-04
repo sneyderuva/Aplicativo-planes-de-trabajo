@@ -66,7 +66,7 @@
         <h5 class="card-header">Actividades </h5>
         <div class="card-body">
 
-        <?php $array = array(); $x=0;$n=0;$nombres=array();?>
+        <?php $array_tareas = array();$array = array(); $x=0;$n=0;$nombres=array();?>
             @foreach($actividades as $actividad)
                 @if($actividad->id_plan_trabajo==$id_p_trabajo) 
                      
@@ -75,6 +75,12 @@
                     ?>
 
                 @endif
+            @endforeach
+            <?php $n=0;?>
+            @foreach($tareas as $tarea)
+                <?php $array_tareas[$n]=$tarea->descripcion; $n+=1;
+                    
+                    ?>
             @endforeach
 
             <?php $array_count = count($array);
@@ -86,7 +92,6 @@
             <h1 class="h3 mb-0 text-gray-800">Tienes {{$count_actividades}} actividades y {{$count_tareas}} tareas </h1>
             @foreach($duplicate_array as $value)
                 @if($value !="")
-                    @foreach($tareas as $tarea)
                     
                     <div class="row">
                         <div class="bs-component">
@@ -131,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php $x++;?>
+                    <?php var_dump($array_tareas); $x++;?>
                     
                 @endif
                 
