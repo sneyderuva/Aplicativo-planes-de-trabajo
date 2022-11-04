@@ -1,13 +1,11 @@
-use mydb;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2022 a las 01:04:55
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 04-11-2022 a las 14:46:12
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +46,8 @@ INSERT INTO `actividades` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `id_tar
 (2, 1, 1, 2, 0, 0, NULL),
 (3, 1, 1, 3, 0, 0, NULL),
 (4, 1, 3, NULL, 0, 0, NULL),
-(5, 1, 4, NULL, 0, 0, NULL);
+(5, 1, 4, NULL, 0, 0, NULL),
+(6, 2, 0, NULL, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -322,6 +321,8 @@ INSERT INTO `semestres` (`id`, `nombre_semestre`, `inicio`, `final`, `updated_at
 
 CREATE TABLE `tareas` (
   `id` int(11) NOT NULL,
+  `id_actividad` int(5) NOT NULL,
+  `id_p_trabajo` int(5) NOT NULL,
   `descripcion` varchar(455) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -329,13 +330,13 @@ CREATE TABLE `tareas` (
 -- Volcado de datos para la tabla `tareas`
 --
 
-INSERT INTO `tareas` (`id`, `descripcion`) VALUES
-(1, 'Actividades de preparación de clase'),
-(2, 'Asesorías Académicas'),
-(3, 'Director o Jurados evaluador trabajo de grado'),
-(4, 'Seminario Institucional'),
-(5, 'Gestión al programa académico'),
-(6, 'Reunión de Grupo de Trabajo');
+INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`) VALUES
+(1, 1, 1, 'Actividades de preparación de clase'),
+(2, 2, 1, 'Asesorías Académicas'),
+(3, 3, 1, 'Director o Jurados evaluador trabajo de grado'),
+(4, 4, 1, 'Seminario Institucional'),
+(5, 5, 1, 'Gestión al programa académico'),
+(6, 6, 1, 'Reunión de Grupo de Trabajo');
 
 -- --------------------------------------------------------
 
@@ -610,7 +611,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
