@@ -115,7 +115,7 @@ class ProfesorController extends Controller
 
         $actividades = \DB::table('actividades')
             ->where('actividades.id_plan_trabajo','=',$id_p_trabajo)
-            ->join('tipo_actividades','tipo_actividades.id','=','actividades.id_tipo_actividad')
+            ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','actividades.id_tipo_actividad')
             ->select('actividades.*','tipo_actividades.nombre_tipo_actividad')
             
             ->orderBy('id','DESC')
@@ -125,9 +125,9 @@ class ProfesorController extends Controller
             
             ->where('tareas.id_p_trabajo','=',$id_p_trabajo)
             ->join('actividades','actividades.id','=','tareas.id_actividad')
-            ->join('tipo_actividades','tipo_actividades.id','=','actividades.id_tipo_actividad')
-            ->select('tareas.*')
-            ->orderBy('id','DESC')
+            ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','actividades.id_tipo_actividad')
+            ->select('tareas.*','tipo_actividades.id_tipo_actividad')
+            ->orderBy('id','ASC')
             ->get();
 
         $count_actividades = $actividades->count();

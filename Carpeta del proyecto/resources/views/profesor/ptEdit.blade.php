@@ -66,7 +66,7 @@
         <h5 class="card-header">Actividades </h5>
         <div class="card-body">
 
-        <?php $array_tareas = array();$array = array(); $x=0;$n=0;$nombres=array();?>
+        <?php $array_tareas_id = array(); $array_tareas = array();$array = array(); $x=0;$n=0;$nombres=array();?>
             @foreach($actividades as $actividad)
                 @if($actividad->id_plan_trabajo==$id_p_trabajo) 
                      
@@ -78,8 +78,8 @@
             @endforeach
             <?php $n=0;?>
             @foreach($tareas as $tarea)
-                <?php $array_tareas[$n]=$tarea->descripcion; $n+=1;
-                    
+                <?php $array_tareas[$n]=$tarea->descripcion; $array_tareas_id[$n]=$tarea->id_tipo_actividad; $n+=1;
+
                     ?>
             @endforeach
 
@@ -88,7 +88,8 @@
                 for($i=0;$i<$array_count; $i++){
                     $duplicate_array[$array[$i]]=$array[$i];
                 }
-                    ?>
+                ?>
+
             <h1 class="h3 mb-0 text-gray-800">Tienes {{$count_actividades}} actividades y {{$count_tareas}} tareas </h1>
             @foreach($duplicate_array as $value)
                 @if($value !="")
@@ -106,43 +107,61 @@
                                     <div id="collapse{{$duplicate_array[$value]}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <div class="d-flex mb-3">
-                                                <div class="me-auto p-2">
-                                                <p class="lead">
-                                                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-                                                </p>   
+                                            <?php $x=0; ?>
+                                            @if($array_tareas_id[0]==0 )
+                                                @foreach($array_tareas_id as $array_tareas_i)
                                                     
-                                                </div>
-                                                <div class="p-2">
+                                                        <div class="d-flex ">
+                                                                
+                                                                <div class="me-auto p-2">
+                                                                    
+                                                                    <p class="">
+                                                                        
+                                                                        {{$array_tareas[$x]}}
+
+                                                                    </p>   
+                                                                
+                                                                </div>
+                                                                <div class="p-2">
+                                                                    
+                                                                    <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                                        <i class="fa fa-paperclip"></i>
+                                                                </div>
+                                                                <div class="p-2">
+                                                                    
+                                                                    <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                                        <i class="fa fa-edit"></i>
+                                                                </div>
+                                                                <div class="p-2">
+                                                                    
+                                                                    <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
+                                                                        <i class="fa fa-trash"></i>
+                                                                </div>
+                                                                
+                                                            </div>
                                                     
-                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
-                                                        <i class="fa fa-paperclip"></i>
-                                                </div>
-                                                <div class="p-2">
                                                     
-                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
-                                                        <i class="fa fa-edit"></i>
-                                                </div>
-                                                <div class="p-2">
+                                                        
+                                                    <?php while($x<count($array)){$x++;} ?>
                                                     
-                                                    <button class="btn btn-round btnAdj" data-id=""  data-toggle="modal" data-target="#ModalEliminar">
-                                                        <i class="fa fa-trash"></i>
-                                                </div>
-                                            </div>
-                                            
+                                                    
+                                                @endforeach
+                                                @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php var_dump($array_tareas); $x++;?>
+                    
                     
                 @endif
                 
             @endforeach
                     
-             
+            <?php var_dump($array); $x++;?>
+            <br>
+            <?php var_dump($array_tareas_id); $x++;?>
         </div>
         
     </div>
