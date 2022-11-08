@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2022 a las 14:46:12
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 09-11-2022 a las 00:29:10
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,6 @@ CREATE TABLE `actividades` (
   `id` int(11) NOT NULL,
   `id_plan_trabajo` int(11) NOT NULL,
   `id_tipo_actividad` int(11) NOT NULL,
-  `id_tareas` int(5) DEFAULT NULL,
   `horas_semanales` int(11) NOT NULL,
   `horas_semestre` int(11) NOT NULL,
   `alcance` varchar(45) DEFAULT NULL
@@ -41,13 +40,17 @@ CREATE TABLE `actividades` (
 -- Volcado de datos para la tabla `actividades`
 --
 
-INSERT INTO `actividades` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `id_tareas`, `horas_semanales`, `horas_semestre`, `alcance`) VALUES
-(1, 1, 0, 1, 0, 0, '0'),
-(2, 1, 1, 2, 0, 0, NULL),
-(3, 1, 1, 3, 0, 0, NULL),
-(4, 1, 3, NULL, 0, 0, NULL),
-(5, 1, 4, NULL, 0, 0, NULL),
-(6, 2, 0, NULL, 0, 0, NULL);
+INSERT INTO `actividades` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `horas_semanales`, `horas_semestre`, `alcance`) VALUES
+(1, 1, 0, 0, 0, '0'),
+(2, 1, 1, 0, 0, NULL),
+(3, 1, 2, 0, 0, NULL),
+(4, 1, 3, 0, 0, NULL),
+(5, 1, 4, 0, 0, NULL),
+(6, 2, 0, 0, 0, NULL),
+(7, 2, 1, 0, 0, '0'),
+(8, 2, 1, 0, 0, '0'),
+(9, 2, 3, 0, 0, '0'),
+(10, 2, 4, 0, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -333,10 +336,10 @@ CREATE TABLE `tareas` (
 INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`) VALUES
 (1, 1, 1, 'Actividades de preparación de clase'),
 (2, 2, 1, 'Asesorías Académicas'),
-(3, 3, 1, 'Director o Jurados evaluador trabajo de grado'),
-(4, 4, 1, 'Seminario Institucional'),
-(5, 5, 1, 'Gestión al programa académico'),
-(6, 6, 1, 'Reunión de Grupo de Trabajo');
+(3, 2, 1, 'Director o Jurados evaluador trabajo de grado'),
+(4, 3, 1, 'Seminario Institucional'),
+(5, 4, 1, 'Gestión al programa académico'),
+(6, 4, 1, 'Reunión de Grupo de Trabajo');
 
 -- --------------------------------------------------------
 
@@ -345,7 +348,7 @@ INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`) VALUE
 --
 
 CREATE TABLE `tipo_actividades` (
-  `id` int(11) NOT NULL,
+  `id_tipo_actividad` int(11) NOT NULL,
   `nombre_tipo_actividad` varchar(152) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -353,7 +356,7 @@ CREATE TABLE `tipo_actividades` (
 -- Volcado de datos para la tabla `tipo_actividades`
 --
 
-INSERT INTO `tipo_actividades` (`id`, `nombre_tipo_actividad`) VALUES
+INSERT INTO `tipo_actividades` (`id_tipo_actividad`, `nombre_tipo_actividad`) VALUES
 (0, 'Actividades de Docencia Indirecta'),
 (1, 'Actividades de Asesoría'),
 (2, 'Actividades de Capacitación'),
@@ -577,7 +580,7 @@ ALTER TABLE `tareas`
 -- Indices de la tabla `tipo_actividades`
 --
 ALTER TABLE `tipo_actividades`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_tipo_actividad`);
 
 --
 -- Indices de la tabla `tipo_documentos`
@@ -611,7 +614,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`

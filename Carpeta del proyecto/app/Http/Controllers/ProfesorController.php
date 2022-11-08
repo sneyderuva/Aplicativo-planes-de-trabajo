@@ -118,7 +118,7 @@ class ProfesorController extends Controller
             ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','actividades.id_tipo_actividad')
             ->select('actividades.*','tipo_actividades.nombre_tipo_actividad')
             
-            ->orderBy('id','DESC')
+            ->orderBy('id','ASC')
             ->get();
         
         $tareas = \DB::table('tareas')
