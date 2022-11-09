@@ -18,7 +18,10 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('/dash/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/css/labels.css')}}" rel="stylesheet">
+    <link href="{{asset('/dash/navtab/bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{asset('/dash/navtab/bootstrap.bundle.min.js')}}" defer></script>
 
 </head>
 
@@ -31,11 +34,14 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{asset('/dash/index.html')}}">
-                <div><img src="https://th.bing.com/th/id/OIP.-15xZbOToZO1aLOisAqg4AHaEK?pid=ImgDet&rs=1" width="100%" height="100%"></div>
-                <div class="sidebar-brand-text mx-3">UNITRÓPICO</div>
+            <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{ url('/')}}">
+                <div><img src="{{asset('/dash/img/LogoUnitropicoBlanco.png')}}" width="180" id="logo"></div>
             </a>
-
+            
+            <p></p>         
+            <p></p>
+            <p></p>         
+            <p></p>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 

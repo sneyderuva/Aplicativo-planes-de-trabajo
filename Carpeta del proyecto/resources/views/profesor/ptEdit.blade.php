@@ -38,55 +38,55 @@
         <div class="card-body">
             
             <h5 class="card-title"></h5> 
-            
-            @foreach($p_trabajos as $p_trabajo)
-                @if($p_trabajo->id==$id_p_trabajo)
+                @foreach($p_trabajos as $p_trabajo)
+                    @if($p_trabajo->id==$id_p_trabajo)
 
-                <table class="table table-bordered border-dark table-hover">
+                    <table class="table table-bordered border-dark table-hover">
+                        
+                        <tbody>
+                            <tr>
+                                <td class="table-primary border-dark" >Facultad</td>
+                                <td class="border-dark">{{$p_trabajo->nombre_facultad}}</td>
+                                <td class="table-primary border-dark">Teléfono</td>
+                            </tr>
+                            <tr>
+                                <td class="table-primary border-dark">Nombre del programa</td>
+                                <td class="border-dark">{{$p_trabajo->nombre_programa}}</td>
+                                <td class="border-dark">{{$p_trabajo->telefono}}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-primary border-dark" >Correo institucional</td>
+                                <td class="border-dark">{{$p_trabajo->email}}</td>
+                                <td class="table-primary border-dark">Dirección</td>
+                            </tr>
+                            <tr>
+                                <td class="table-primary border-dark">Tipo de documento</td>
+                                <td class="border-dark">{{$p_trabajo->n_tipo_documento}}</td>
+                                <td class="border-dark">{{$p_trabajo->direccion}}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-primary border-dark">Número de documento</td>
+                                <td class="border-dark">{{$p_trabajo->n_documento}}</td>
+                                <td class="table-primary border-dark">Escalafón</td>
+                            </tr>
+                            <tr>
+                                <td class="table-primary border-dark">Nombres</td>
+                                <td class="border-dark">{{$p_trabajo->nombres}} {{$p_trabajo->apellidos}}</td>
+                                <td class="border-dark">{{$p_trabajo->escalafon}}</td>
+                                
+                            </tr>
+                        </tbody>
+                        </table>
+                        <a href="#" class="btn btn-primary">Guardar</a>
+
+                    @endif
                     
-                    <tbody>
-                        <tr>
-                            <td class="table-primary border-dark" >Facultad</td>
-                            <td class="border-dark">{{$p_trabajo->nombre_facultad}}</td>
-                            <td class="table-primary border-dark">Teléfono</td>
-                        </tr>
-                        <tr>
-                            <td class="table-primary border-dark">Nombre del programa</td>
-                            <td class="border-dark">{{$p_trabajo->nombre_programa}}</td>
-                            <td class="border-dark">{{$p_trabajo->telefono}}</td>
-                        </tr>
-                        <tr>
-                            <td class="table-primary border-dark" >Correo institucional</td>
-                            <td class="border-dark">{{$p_trabajo->email}}</td>
-                            <td class="table-primary border-dark">Dirección</td>
-                        </tr>
-                        <tr>
-                            <td class="table-primary border-dark">Tipo de documento</td>
-                            <td class="border-dark">{{$p_trabajo->n_tipo_documento}}</td>
-                            <td class="border-dark">{{$p_trabajo->direccion}}</td>
-                        </tr>
-                        <tr>
-                            <td class="table-primary border-dark">Número de documento</td>
-                            <td class="border-dark">{{$p_trabajo->horas_semestre}}</td>
-                            <td class="table-primary border-dark">Escalafón</td>
-                        </tr>
-                        <tr>
-                            <td class="table-primary border-dark">Nombres</td>
-                            <td class="border-dark">{{$p_trabajo->nombres}} {{$p_trabajo->apellidos}}</td>
-                            <td class="border-dark">{{$p_trabajo->escalafon}}</td>
-                            
-                        </tr>
-                    </tbody>
-                    </table>
+                @endforeach
 
-                @endif
-            @endforeach
-
-            <a href="#" class="btn btn-primary">Guardar</a>
         </div>
     </div>
     <br>
-</br>
+    </br>
     <div class="card">
         <h5 class="card-header">Información General</h5>
         <div class="card-body">
@@ -134,13 +134,14 @@
                 </table>
 
                 
-
+                <a href="#" class="btn btn-primary">Guardar</a>
                 @endif
             @endforeach
-            <a href="#" class="btn btn-primary">Guardar</a>
+            
         </div>
     </div>
-    
+    <br>
+    </br>
     <div class="card">
         <h5 class="card-header">Actividades </h5>
         <div class="card-body">
@@ -148,28 +149,20 @@
         <?php $array_tareas_id = array(); $array_tareas = array();$array = array(); $x=0;$n=0;$nombres=array();?>
             @foreach($actividades as $actividad)
                 @if($actividad->id_plan_trabajo==$id_p_trabajo) 
-                     
-                    <?php $array[$n]=$actividad->id_tipo_actividad; $nombres[$n]=$actividad->nombre_tipo_actividad;$n+=1;
-                    
-                    ?>
-
+                    <?php $array[$n]=$actividad->id_tipo_actividad; $nombres[$n]=$actividad->nombre_tipo_actividad;$n++;?>
                 @endif
             @endforeach
             <?php $n=0; ?>
             @foreach($tareas as $tarea)
                 @if($tarea->id_p_trabajo==$id_p_trabajo)
                     <?php
-
                         $array_tareas[$n]=$tarea->descripcion;
                         $array_tareas_id[$n]=$tarea->id_tipo_actividad;
                         $auxiliar = array();
-                        
-                        
                         $n++;
                     ?>
                 @endif
             @endforeach
-            
             <?php $array_count = count($array);
                 $temp = array();
                 $duplicate_array = array();
@@ -178,14 +171,11 @@
                     $duplicate_array[$array[$i]]=$array[$i];
                 }
                 ?>
-
             <h1 class="h3 mb-0 text-gray-800">Tienes {{$count_actividades}} actividades y {{$count_tareas}} tareas </h1>
             <br>
             </br>
             @if(count($actividades)>0)
-            @foreach($duplicate_array as $value)
-                @if($value !="")
-                    
+            @foreach($duplicate_array as $value)   
                     <div class="row">
                         <div class="bs-component">
                             <div class="accordion" id="accordion{{$duplicate_array[$value]}}">
@@ -199,34 +189,24 @@
                                     <div id="collapse{{$duplicate_array[$value]}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            
-                                            
                                                 @foreach($array_tareas_id as $array_tareas_i)
                                                     @if($array_tareas_i==$value)
                                                         <div class="d-flex ">
-                                                                
                                                                 <div class="me-auto p-2">
-                                                                    
                                                                     <p class="">
-                                                                        
                                                                         {{$array_tareas[$x]}}
                                                                         <?php $x++; ?>
-
                                                                     </p>   
-                                                                
                                                                 </div>
                                                                 <div class="p-2">
-                                                                    
                                                                     <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
                                                                         <i class="fa fa-paperclip"></i>
                                                                 </div>
                                                                 <div class="p-2">
-                                                                    
                                                                     <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
                                                                         <i class="fa fa-edit"></i>
                                                                 </div>
                                                                 <div class="p-2">
-                                                                    
                                                                     <button class="btn " data-id=""  data-toggle="modal" data-target="#ModalEliminar">
                                                                         <i class="fa fa-trash"></i>
                                                                 </div>
@@ -241,20 +221,15 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                @endif
-                
             @endforeach
             @else
             <p>aún no hay ninguna tarea</p>
             @endif
-            <?php var_dump($array_tareas_id); $x++;?>
-            <br>
-            <?php var_dump($duplicate_array); $x++;?>
         </div>
         
     </div>
 </div>
+<br>
+</br>
 
 @endsection

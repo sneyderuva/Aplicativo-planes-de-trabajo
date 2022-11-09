@@ -18,9 +18,10 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="{{asset('/dash/navtab/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/dash/css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{asset('/dash/css/labels.css')}}" rel="stylesheet">
-    <link href="{{asset('/dash/navtab/bootstrap.min.css')}}" rel="stylesheet">
+    
     <script src="{{asset('/dash/navtab/bootstrap.bundle.min.js')}}" defer></script>
 
 </head>

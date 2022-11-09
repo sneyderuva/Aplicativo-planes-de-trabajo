@@ -38,7 +38,7 @@ Route::group(['prefix'=>'p','as'=>'p'],function(){
     
 });
 
-Route::group(['prefix'=>'evaluador','as'=>'evaluador'],function(){
+Route::group(['prefix'=>'e','as'=>'evaluador'],function(){
     Route::get('/', [EvaluadorController::class,'index']);
     Route::get('/e', [EvaluadorController::class, 'evaluacion']);
     
