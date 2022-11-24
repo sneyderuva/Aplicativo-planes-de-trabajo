@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tarea extends Model
 {
     use HasFactory;
-    protected $fillable = ['descripcion'];
+    protected $fillable = ['id_actividad','id_p_trabajo','descripcion','descripcion2'];
 }

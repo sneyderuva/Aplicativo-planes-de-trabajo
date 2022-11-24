@@ -19,8 +19,9 @@ use App\Http\Controllers\ProfileController;
 */
 
 
-Route::get('/', [ProfesorController::class,'resumen']);
-Route::get('/u',[ProfesorController::class,'index']);
+Route::get('/', [ProfesorController::class,'progreso']);
+Route::post('/', [ProfesorController::class,'store_pt']);
+Route::delete('/{id}',[ProfesorController::class,'destroy']);
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
     Route::get('/',[AdminController::class,'index']);
@@ -31,15 +32,18 @@ Route::group(['prefix'=>'admin','as'=>'admin'],function(){
 
 });
 Route::group(['prefix'=>'p','as'=>'p'],function(){
-    Route::get('/', [ProfesorController::class,'resumen']);
-    Route::get('/a', [ProfesorController::class,'actividades']);
-
+    Route::get('/', [ProfesorController::class,'resumen']); 
+    Route::get('/a', [ProfesorController::class,'actividades']); 
     Route::get('/{id}', [ProfesorController::class,'editPT']);
-    
+    Route::post('/{id}',[ProfesorController::class,'store_actividades']);
+    Route::post('/{id}',[ProfesorController::class,'store_tareas']);
+
+    Route::get('/{id}/t', [ProfesorController::class,'backPT']);
+    Route::post('/{id}/t', [ProfesorController::class,'tareas']);
 });
 
-Route::group(['prefix'=>'e','as'=>'evaluador'],function(){
+Route::group(['prefix'=>'u','as'=>'usuario'],function(){
     Route::get('/', [EvaluadorController::class,'index']);
-    Route::get('/e', [EvaluadorController::class, 'evaluacion']);
+    Route::get('/{id}', [EvaluadorController::class, 'verPTs']);
     
 });

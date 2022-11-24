@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2022 a las 00:29:10
+-- Tiempo de generación: 24-11-2022 a las 20:26:09
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,37 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mydb`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `actividades`
---
-
-CREATE TABLE `actividades` (
-  `id` int(11) NOT NULL,
-  `id_plan_trabajo` int(11) NOT NULL,
-  `id_tipo_actividad` int(11) NOT NULL,
-  `horas_semanales` int(11) NOT NULL,
-  `horas_semestre` int(11) NOT NULL,
-  `alcance` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `actividades`
---
-
-INSERT INTO `actividades` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `horas_semanales`, `horas_semestre`, `alcance`) VALUES
-(1, 1, 0, 0, 0, '0'),
-(2, 1, 1, 0, 0, NULL),
-(3, 1, 2, 0, 0, NULL),
-(4, 1, 3, 0, 0, NULL),
-(5, 1, 4, 0, 0, NULL),
-(6, 2, 0, 0, 0, NULL),
-(7, 2, 1, 0, 0, '0'),
-(8, 2, 1, 0, 0, '0'),
-(9, 2, 3, 0, 0, '0'),
-(10, 2, 4, 0, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -134,6 +103,40 @@ CREATE TABLE `dependencias` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `esactividads`
+--
+
+CREATE TABLE `esactividads` (
+  `id` int(11) NOT NULL,
+  `id_plan_trabajo` int(11) NOT NULL,
+  `id_tipo_actividad` int(11) NOT NULL,
+  `horas_semanales` int(11) NOT NULL,
+  `horas_semestre` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `alcance` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `esactividads`
+--
+
+INSERT INTO `esactividads` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `horas_semanales`, `horas_semestre`, `updated_at`, `created_at`, `alcance`) VALUES
+(1, 1, 0, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
+(2, 1, 1, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', NULL),
+(3, 1, 2, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', NULL),
+(4, 1, 3, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', NULL),
+(5, 1, 4, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', NULL),
+(6, 2, 0, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', NULL),
+(7, 2, 1, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
+(8, 2, 1, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
+(9, 2, 3, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
+(10, 2, 4, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
+(11, 4, 0, 10, 22, '2022-11-24 09:20:14', '2022-11-24 09:20:14', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `evaluadores`
 --
 
@@ -181,6 +184,18 @@ CREATE TABLE `facultades` (
 
 INSERT INTO `facultades` (`id`, `nombre_facultad`) VALUES
 (1, 'Ingenierias');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -278,7 +293,8 @@ CREATE TABLE `p_trabajos` (
 INSERT INTO `p_trabajos` (`id`, `id_profesor`, `id_semestre`, `horas_semana`, `horas_semestre`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 24, 326, '2022-10-30 05:08:50', '2022-10-30 03:09:30'),
 (2, 2, 2, 22, 365, '2022-10-30 05:16:02', '2022-10-30 03:09:47'),
-(3, 3, 1, 44, 222, '2022-10-30 14:36:09', '2022-10-30 19:03:03');
+(3, 3, 1, 44, 222, '2022-10-30 14:36:09', '2022-10-30 19:03:03'),
+(4, 3, 1, 0, 0, '2022-11-24 08:44:17', '2022-11-24 08:44:17');
 
 -- --------------------------------------------------------
 
@@ -326,20 +342,25 @@ CREATE TABLE `tareas` (
   `id` int(11) NOT NULL,
   `id_actividad` int(5) NOT NULL,
   `id_p_trabajo` int(5) NOT NULL,
-  `descripcion` varchar(455) NOT NULL
+  `descripcion` varchar(455) NOT NULL,
+  `descripcion2` varchar(255) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tareas`
 --
 
-INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`) VALUES
-(1, 1, 1, 'Actividades de preparación de clase'),
-(2, 2, 1, 'Asesorías Académicas'),
-(3, 2, 1, 'Director o Jurados evaluador trabajo de grado'),
-(4, 3, 1, 'Seminario Institucional'),
-(5, 4, 1, 'Gestión al programa académico'),
-(6, 4, 1, 'Reunión de Grupo de Trabajo');
+INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`, `descripcion2`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, 'Actividades de preparación de clase', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(2, 2, 1, 'Asesorías Académicas', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(3, 2, 1, 'Director o Jurados evaluador trabajo de grado', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(4, 3, 1, 'Seminario Institucional', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(5, 4, 1, 'Gestión al programa académico', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(6, 4, 1, 'Reunión de Grupo de Trabajo', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
+(9, 11, 4, 'oioihoi', '+pke´fpked´fas', '2022-11-24 21:47:55', '2022-11-24 21:47:55'),
+(10, 11, 4, 'Actividades de preparación de clase', 'paosjdoiasd', '2022-11-24 21:56:30', '2022-11-24 21:56:30');
 
 -- --------------------------------------------------------
 
@@ -463,12 +484,6 @@ INSERT INTO `users` (`id`, `n_documento`, `id_tipo_usuario`, `id_tipo_documento`
 --
 
 --
--- Indices de la tabla `actividades`
---
-ALTER TABLE `actividades`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `actividad_evaluadas`
 --
 ALTER TABLE `actividad_evaluadas`
@@ -506,6 +521,12 @@ ALTER TABLE `dependencias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `esactividads`
+--
+ALTER TABLE `esactividads`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `evaluadores`
 --
 ALTER TABLE `evaluadores`
@@ -521,6 +542,12 @@ ALTER TABLE `evidencias`
 -- Indices de la tabla `facultades`
 --
 ALTER TABLE `facultades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `migrations`
+--
+ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -611,12 +638,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividades`
---
-ALTER TABLE `actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -635,6 +656,12 @@ ALTER TABLE `dedicacion_tipos`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `esactividads`
+--
+ALTER TABLE `esactividads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de la tabla `evidencias`
 --
 ALTER TABLE `evidencias`
@@ -647,6 +674,12 @@ ALTER TABLE `facultades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `p_academicos`
 --
 ALTER TABLE `p_academicos`
@@ -656,7 +689,7 @@ ALTER TABLE `p_academicos`
 -- AUTO_INCREMENT de la tabla `p_trabajos`
 --
 ALTER TABLE `p_trabajos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `rubricas`
@@ -674,7 +707,7 @@ ALTER TABLE `semestres`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documentos`

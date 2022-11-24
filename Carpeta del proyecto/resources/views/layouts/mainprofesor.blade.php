@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+<?php $nav=0;?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,58 +36,29 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{ url('/')}}">
-                <div><img src="{{asset('/dash/img/LogoUnitropicoBlanco.png')}}" width="180" id="logo"></div>
+                <div class="sidebar-brand-text">
+                    <img src="{{asset('/dash/img/LogoUnitropicoBlanco.png')}}" width="140" id="logo">
+                </div>
+                <div class="sidebar-brand-icon">
+                    <img src="{{asset('/dash/img/favicon1.ico')}}" width="70" id="icono">
+                </div>
             </a>
-            
-            <p></p>         
-            <p></p>
-            <p></p>         
-            <p></p>
+            <br></br>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
                             
             
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{url('/')}}">
-                    <i class="fas fa-fw fa-archive"></i>
-                    <span>Progreso</span></a>
-            </li>
-
-            <!-- Heading -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/p')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Planes de trabajo</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/p/a')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Mis actividades</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Evaluación
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/p/r')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Resultados</span></a>
-            </li>
-
+            @yield('navbar')
+                    
+                    
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                
             </div>
 
         </ul>
@@ -105,6 +76,7 @@
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
+                        
                     </button>
 
                     <!-- Topbar Search -->
@@ -366,7 +338,12 @@
 
     <script src="{{asset('/dash/vendor/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
 
- 
+    <!-- Page level plugins -->
+    <script src="{{asset('/dash/vendor/chart.js/Chart.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('/dash/js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('/dash/js/demo/chart-pie-demo.js')}}"></script>
 
     @yield('scripts')
 

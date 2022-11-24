@@ -36,7 +36,6 @@ class ProfileController extends Controller
         ->with('tipo_documentos',$tipo_documentos);
            
     }
-
     public function store(Request $request){
         
         $validator = Validator::make($request->all(),
@@ -90,8 +89,6 @@ class ProfileController extends Controller
         return back()->with('Correcto','Registrado correctamente');
     }
 }
-        
-       
     public function destroy($id){
         $user = User::find($id);
         $user->delete();

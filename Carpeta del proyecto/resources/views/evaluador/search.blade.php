@@ -23,9 +23,10 @@
                         
                         <li class="nav-item ">
                             <a class="nav-link active" data-toggle="tab" href="#pt">Profesores transitorios</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#pc">Profesores de Cátedra</a>
+                            <a class="nav-link" data-toggle="tab" href="#pc">Profesores de cátedra</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#po">Profesores ocasionales</a>
@@ -60,22 +61,9 @@
                                                     <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
-                                                        <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
-                                                            data-id="{{ $usuario->id }}"
-                                                            
-                                                            data-apellidos="{{ $usuario->apellidos }}"
-                                                            data-nombres="{{ $usuario->nombres }}"
-                                                            data-email="{{ $usuario->email }}"
-                                                            ><i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-round btnEliminar" data-id="{{ $usuario->id}}"  data-toggle="modal" data-target="#ModalEliminar">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                        <form action="{{ url('/admin/usuarios',['id'=>$usuario->id ]) }}" method="post" id="formEli_{{ $usuario->id }}">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $usuario->id}}">
-                                                            <input type="hidden" name="_method" value="delete">
-                                                        </form>
+                                                        <a class="btn btn-round btnEditar" href="{{ url('/e',['id'=>$usuario->id])}}"
+                                                            data-id="{{$usuario->id}}"><i class="fa fa-edit text-info"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -109,22 +97,9 @@
                                                     <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
-                                                        <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
-                                                            data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
-                                                            data-apellidos="{{ $usuario->apellidos }}"
-                                                            data-nombres="{{ $usuario->nombres }}"
-                                                            data-email="{{ $usuario->email }}"
-                                                            ><i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-round btnEliminar" data-id="{{ $usuario->id}}"  data-toggle="modal" data-target="#ModalEliminar">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                        <form action="{{ url('/admin/usuarios',['id'=>$usuario->id ]) }}" method="post" id="formEli_{{ $usuario->id }}">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $usuario->id}}">
-                                                            <input type="hidden" name="_method" value="delete">
-                                                        </form>
+                                                    <a class="btn btn-round btnEditar" href="{{ url('/e',['id'=>$usuario->id])}}"
+                                                            data-id="{{$usuario->id}}"><i class="fa fa-edit text-info"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -159,22 +134,9 @@
                                                     <td>{{$usuario->nombre_tipo}}</td>
                                                     <td>{{$usuario->created_at}}</td>
                                                     <td>
-                                                        <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditar"
-                                                            data-id="{{ $usuario->id }}"
-                                                            data-tipo="{{ $usuario->id_tipo_usuario }}"
-                                                            data-apellidos="{{ $usuario->apellidos }}"
-                                                            data-nombres="{{ $usuario->nombres }}"
-                                                            data-email="{{ $usuario->email }}"
-                                                            ><i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-round btnEliminar" data-id="{{ $usuario->id}}"  data-toggle="modal" data-target="#ModalEliminar">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                        <form action="{{ url('/admin/usuarios',['id'=>$usuario->id ]) }}" method="post" id="formEli_{{ $usuario->id }}">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $usuario->id}}">
-                                                            <input type="hidden" name="_method" value="delete">
-                                                        </form>
+                                                        <a class="btn btn-round btnEditar" href="{{ url('/e',['id'=>$usuario->id])}}"
+                                                            data-id="{{$usuario->id}}"><i class="fa fa-edit text-info"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -183,38 +145,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="Administradores">
-                            <div class="row">
-                                <table class="table col-12">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            <th>Email</th>
-                                            <th>Tipo de usuario</th>
-                                            <th>Fecha de registro</th>
-                                            <th>&nbsp;</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($usuarios as $usuario)
-                                            @if($usuario->id_tipo_usuario=="5")
-                                                <tr>
-                                                    <td>{{ $usuario->n_documento}}</td>
-                                                    <td>{{$usuario->nombres}}</td>
-                                                    <td>{{$usuario->apellidos}}</td>
-                                                    <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->nombre_tipo}}</td>
-                                                    <td>{{$usuario->created_at}}</td>
-                                                    
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        
                         <div class="tab-pane fade" id="semestres">
                             <div class="row">
                                 <table class="table col-12">

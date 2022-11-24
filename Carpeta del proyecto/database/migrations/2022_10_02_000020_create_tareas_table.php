@@ -25,14 +25,17 @@ class CreateTareasTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('id_actividad_t');
+            $table->integer('id_actividad');
+            $table->integer('id_p_trabajo');
             $table->string('descripcion');
+            $table->string('descripcion2');
+
 
             $table->index(["id_actividad_t"], 'fk_tareas_actividades1_idx');
 
 
             $table->foreign('id_actividad_t', 'fk_tareas_actividades1_idx')
-                ->references('id')->on('actividades')
+                ->references('id')->on('esactividads')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

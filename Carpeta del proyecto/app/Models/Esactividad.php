@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class actividad extends Model
+class Esactividad extends Model
 {
     use HasFactory;
-    protected $fillable = ['actividad','horas_semanales','horas_semestre','alcance'];
+    protected $fillable = ['id_plan_trabajo','id_tipo_actividad','horas_semanales','horas_semestre','','alcance'];
+
 }

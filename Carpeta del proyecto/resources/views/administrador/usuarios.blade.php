@@ -547,7 +547,7 @@
 @endsection
 @section('scripts')
 <script>
-        var idEliminar=0;
+    var idEliminar=0;
         $(document).ready(function(){
             @if($message = Session::get('ErrorInsert'))
                 $("#ModalAgregar").modal('show');
@@ -592,13 +592,6 @@
             @if($message = Session::get('ErrorInsertSemestre'))
                 $("#ModalAgregarSemestre").modal('show');
             
-            @elseif($message = Session::get('Correcto'))
-            Swal.fire({
-            title: '¡Perfecto!',
-            text: 'Agregado correctamente',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-            });
             @endif
         });
     </script>
