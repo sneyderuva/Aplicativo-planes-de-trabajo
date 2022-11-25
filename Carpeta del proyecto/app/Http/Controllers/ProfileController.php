@@ -11,6 +11,10 @@ use Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 class ProfileController extends Controller
 {
+    public function login(){
+        return view('layouts.login');
+    }
+
     public function index(){
         $semestres = \DB::table('semestres')
         ->select('semestres.*')
