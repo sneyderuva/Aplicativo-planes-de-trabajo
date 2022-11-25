@@ -408,7 +408,8 @@
 @endsection
 
 @section('navbar')
-<li class="nav-item">
+  
+        <li class="nav-item">
         <a class="nav-link" href="{{url('/')}}">
             <i class="fas fa-fw fa-archive"></i>
             <span>Progreso</span></a>
@@ -438,4 +439,4 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Resultados</span></a>
         </li>
-@endsection
+    @endsection

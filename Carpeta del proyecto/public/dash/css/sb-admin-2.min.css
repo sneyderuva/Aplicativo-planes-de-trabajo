@@ -15,6 +15,7 @@
 
 body {
   margin:0;
+  background: #00cba9af;
 }
 
 h1 {
@@ -33,15 +34,10 @@ p {
 .header {
   position:relative;
   text-align:center;
-  background: linear-gradient(60deg, #b4a169 0%, #a49470 100%);
+  background: white;
   color:white;
 }
 .logo {
-  width:50px;
-  fill: gray;
-  padding-right:15px;
-  display:inline-block;
-  vertical-align: middle;
 }
 
 .inner-header {
@@ -61,14 +57,16 @@ p {
 .waves {
   position:relative;
   width: 100%;
-  height:20vh;
+  height:15vh;
   margin-bottom:-7px; /*Fix for safari gap*/
-  min-height:150px;
-  max-height:200px;
+  min-height:100px;
+  max-height:150px;
 }
 
 .content {
+  position:relative;
   
+  text-align:center;
 }
 
 /* Animation */

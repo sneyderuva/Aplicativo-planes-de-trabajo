@@ -95,7 +95,8 @@
                 </div> 
             </div>
 
-
+            <br></br>
+            <br></br>
             <!--Waves Container-->
             <div>
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -117,9 +118,7 @@
             <!--Header ends-->
 
             <!--Content starts-->
-            <div class="content flex">
-                <p>Desarrollado | Unitrópico 2023 </p>
-            </div>
+            
 </div>
             <!--Content ends-->
 
