@@ -65,7 +65,7 @@ class ProfileController extends Controller
                 'apellidos'=>$request->apellidos,
                 'id_tipo_usuario'=>$request->tipo_usuario,
                 'email'=>$request->email,
-                'password'=>$request->contraseña
+                'contraseña' => Hash::make($request->contraseña)
 
             ]);
             return back()->with('Correcto','Registrado correctamente');

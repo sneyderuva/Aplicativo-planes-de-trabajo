@@ -14,8 +14,17 @@ use PDF;
 class ProfesorController extends Controller
 {
 
-    public function progreso(){
-        return view('profesor.progreso');
+    public function progreso(Request $request){
+        $email=$request->email;
+
+        $usuarios = \DB::table('users')
+            ->where('users.email','=',$email)
+            ->select('users.*')
+            ->orderBy('id','DESC')
+            ->get();
+        
+        return view('profesor.progreso')
+            ->with('usuario',$usuarios);
     }
 
     public function store_pt(Request $request){

@@ -388,19 +388,19 @@
             @elseif($message = Session::get('Error2'))
                 $("#ModalAgregarTarea").modal('show');
             @elseif($message = Session::get('Correcto'))
-            Swal.fire({
-            title: '¡Perfecto!',
-            text: 'Agregado correctamente',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-            });
+                Swal.fire({
+                title: '¡Perfecto!',
+                text: 'Agregado correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                });
             @elseif($message = Session::get('Borrado'))
-            Swal.fire({
-            title: '¡Perfecto!',
-            text: 'Eliminado correctamente',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-            });
+                Swal.fire({
+                title: '¡Perfecto!',
+                text: 'Eliminado correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                });
             @endif
         });
 </script>
