@@ -3,9 +3,8 @@
 <title>Profesor</title>
 @endsection
 @section('contenido')
-
-
-        @if($count_p_trabajos==0)
+    <?php $x=0;?>
+        @if($x==0)
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/dash/img/LogoUnitropicoColor.png')}}" width="40%" height="40%" >
@@ -13,7 +12,11 @@
                 <div class="d-sm-flex align-items-center justify-content-center mb-4">
                     <h3 class="h3 mb-0 text-gray" >Agrega un plan de trabajo para empezar</h3>
                 </div>
-
+                <div class="d-sm-flex align-items-center justify-content-center mb-4">
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregarpt">
+                        <i class="fas fa-plus fa-sm text-white-50 justify-content-center
+                        " style="height:20px;"></i> Crear plan de trabajo</a>
+                </div>
                 
         @else        
                 <div class="d-sm-flex align-items-center justify-content-center mb-4">
@@ -37,7 +40,7 @@
                         <tbody>
                             
                             @foreach($p_trabajos as $p_trabajo)
-
+                            @if($p_trabajo->id_profesor ==Auth::User()->id)
                                     <tr>
                                         <td>
                                         <?php $id_p_trabajo=$p_trabajo->id;
@@ -55,7 +58,7 @@
                                                     echo $id_p_trabajo;
                                                 break;
 
-                                            } ?></td>
+                                            } $x+=1;?></td>
                                         <td>{{$p_trabajo->nombre_semestre}}</td>
                                         <td>{{$p_trabajo->nombre_tipo_vinculacion}}</td>
                                         <td>{{$p_trabajo->nombre_tipo_dedicacion}}</td>
@@ -77,7 +80,9 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endif
                             @endforeach
+                        
                         </tbody>
                     </table>
             @endif

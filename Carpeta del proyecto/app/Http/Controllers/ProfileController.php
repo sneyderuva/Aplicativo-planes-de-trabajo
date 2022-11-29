@@ -11,6 +11,11 @@ use Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 class ProfileController extends Controller
 {
+
+    public function perfil(){
+        return view('perfil');
+    }
+
     public function login(){
         return view('layouts.login');
     }
@@ -124,7 +129,7 @@ class ProfileController extends Controller
             'confirmarnuevacontraseña'=>'required|min:8']);
             
             if(!$validator2->fails()){
-                $user->password = $request->nuevacontraseña;
+                $user->password = Hash::make($request->nuevacontraseña);
             }
             $user->save();
             return back()->with('Editado','Actualizado Correctamente');

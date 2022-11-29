@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\EvaluadorController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\TareasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,8 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [ProfesorController::class,'progreso']);
 Route::post('/', [ProfesorController::class,'store_pt']);
+Route::get('/perfil', [ProfileController::class,'perfil']);
+
 
 
 
@@ -37,7 +39,7 @@ Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/a', [ProfesorController::class,'actividades']); 
     Route::get('/{id}', [ProfesorController::class,'editPT']);
     Route::post('/{id}',[ProfesorController::class,'store_actividades']);
-    Route::post('/{id}',[ProfesorController::class,'store_tareas']);
+    Route::post('/{id}',[TareasController::class,'store_tareas']);
 
     Route::get('/{id}/t', [ProfesorController::class,'backPT']);
     Route::post('/{id}/t', [ProfesorController::class,'tareas']);

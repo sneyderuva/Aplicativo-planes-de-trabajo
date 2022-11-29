@@ -20,7 +20,7 @@
                                     
                                     <div class="row">
                                         <div class="col-lg-6 d-none d-lg-block ">
-                                            <img src="{{asset('/dash/img/escudo2.jpeg')}}" width="450" id="logo">
+                                            <img src="{{asset('/dash/img/escudo2.jpeg')}}" width="75%" id="logo">
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="p-5">
@@ -52,19 +52,19 @@
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary">
                                                             {{ __('Login') }}
-                                                        </button>
-                                                            @if (Route::has('password.request'))
-                                                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                                    {{ __('Forgot Your Password?') }}
-                                                                </a>
-                                                            @endif
-                                                        </div>
+                                                        
                                                     </div>
+                                                    <div class="form-group">
+                                                        @if (Route::has('password.request'))
+                                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                                {{ __('Forgot Your Password?') }}
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                    
                                                 </form>
                                                 <hr>
-                                                <div class="text-center">
-                                                    <a class="small" href="forgot-password.html">¿Olvidaste la contraseña?</a>
-                                                </div>
+                                                
                                                 <div class="text-center">
                                                     <a class="small" href="register.html">No tengo usuario</a>
                                                 </div>

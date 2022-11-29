@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\p_trabajo;
 use App\Models\Esactividad;
 use App\Models\tarea;
-
+use App\Models\profesr;
+use Auth;
 use Illuminate\Http\Request;
 use Validator;
 use Dompdf\Dompdf;
@@ -39,7 +40,11 @@ class ProfesorController extends Controller
 
             $pt = p_trabajo::create([
                 'id_semestre'=>$request->semestre,
-                'id_profesor'=>3
+                'id_profesor'=>Auth::User()->id
+            ]);
+
+            $profesor = profesr::create([
+                'id_usuario'=>Auth::User()->id  
             ]);
             return back()->with('Correcto','Registrado correctamente');
             
@@ -56,9 +61,9 @@ class ProfesorController extends Controller
             ->select('users.*')
             ->orderBy('id','DESC')
             ->get();
-        $profesores = \DB::table('profesores')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
-            ->select('profesores.*','tipo_vinculaciones.nombre_tipo_vinculacion')
+        $profesores = \DB::table('profesrs')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->select('profesrs.*','tipo_vinculaciones.nombre_tipo_vinculacion')
             ->orderBy('id','ASC')
             ->get();
         $semestres = \DB::table('semestres')
@@ -74,12 +79,12 @@ class ProfesorController extends Controller
             ->orderBy('id','ASC')
             ->get();   
         $p_trabajos = \DB::table('p_trabajos')
-            ->join('profesores', 'profesores.id', '=', 'p_trabajos.id_profesor')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
+            ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
-            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesores.id_dedicacion')
+            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
 
-            ->select('p_trabajos.*','profesores.direccion','semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
+            ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
             ->orderBy('id','ASC')
             ->get();     
         $count_p_trabajos = $p_trabajos->count();
@@ -129,10 +134,10 @@ class ProfesorController extends Controller
             ->select('users.*')
             ->orderBy('id','DESC')
             ->get();
-        $profesores = \DB::table('profesores')
-            ->join('users','users.id','=','profesores.id_usuario')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
-            ->select('profesores.*','tipo_vinculaciones.nombre_tipo_vinculacion')
+        $profesores = \DB::table('profesrs')
+            ->join('users','users.id','=','profesrs.id_usuario')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->select('profesrs.*','tipo_vinculaciones.nombre_tipo_vinculacion')
             ->orderBy('id','ASC')
             ->get();
         $semestres = \DB::table('semestres')
@@ -173,15 +178,15 @@ class ProfesorController extends Controller
         $count_tareas = $tareas->count();
         $p_trabajos = \DB::table('p_trabajos')
         
-            ->join('profesores', 'profesores.id', '=', 'p_trabajos.id_profesor')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
-            ->join('users','users.id','=','profesores.id_usuario')
+            ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->join('users','users.id','=','profesrs.id_usuario')
             ->join('tipo_documentos','tipo_documentos.id','=','users.id_tipo_documento')
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
-            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesores.id_dedicacion')
-            ->join('p_academicos','p_academicos.id','=','profesores.id_programa')
+            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
+            ->join('p_academicos','p_academicos.id','=','profesrs.id_programa')
             ->join('facultades','facultades.id','=','p_academicos.idfacultad')
-            ->select('p_trabajos.*','profesores.direccion','profesores.telefono','profesores.escalafon',
+            ->select('p_trabajos.*','profesrs.direccion','profesrs.telefono','profesrs.escalafon',
             'semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion',
             'users.n_documento','tipo_documentos.n_tipo_documento','users.email','users.nombres','users.apellidos',
             'p_academicos.nombre_programa','facultades.nombre_facultad')
@@ -211,10 +216,10 @@ class ProfesorController extends Controller
             ->select('users.*')
             ->orderBy('id','DESC')
             ->get();
-        $profesores = \DB::table('profesores')
-            ->join('users','users.id','=','profesores.id_usuario')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
-            ->select('profesores.*','tipo_vinculaciones.nombre_tipo_vinculacion')
+        $profesores = \DB::table('profesrs')
+            ->join('users','users.id','=','profesrs.id_usuario')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->select('profesrs.*','tipo_vinculaciones.nombre_tipo_vinculacion')
             ->orderBy('id','ASC')
             ->get();
         $semestres = \DB::table('semestres')
@@ -251,15 +256,15 @@ class ProfesorController extends Controller
         $count_tareas = $tareas->count();
         $p_trabajos = \DB::table('p_trabajos')
         
-            ->join('profesores', 'profesores.id', '=', 'p_trabajos.id_profesor')
-            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesores.id_vinculacion')
-            ->join('users','users.id','=','profesores.id_usuario')
+            ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->join('users','users.id','=','profesrs.id_usuario')
             ->join('tipo_documentos','tipo_documentos.id','=','users.id_tipo_documento')
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
-            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesores.id_dedicacion')
-            ->join('p_academicos','p_academicos.id','=','profesores.id_programa')
+            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
+            ->join('p_academicos','p_academicos.id','=','profesrs.id_programa')
             ->join('facultades','facultades.id','=','p_academicos.idfacultad')
-            ->select('p_trabajos.*','profesores.direccion','profesores.telefono','profesores.escalafon',
+            ->select('p_trabajos.*','profesrs.direccion','profesrs.telefono','profesrs.escalafon',
             'semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion',
             'users.n_documento','tipo_documentos.n_tipo_documento','users.email','users.nombres','users.apellidos',
             'p_academicos.nombre_programa','facultades.nombre_facultad')
@@ -311,28 +316,7 @@ class ProfesorController extends Controller
             
         } 
     }
-    public function store_tareas(Request $request){
-        $validator = Validator::make($request->all(),
-        ['titulo'=>'required']);
-
-        if($validator -> fails()){
-            return back()->withInput()
-            ->with('Error2','Debes llenar los campos correctamente')
-            ->withErrors($validator);
-        }else{
-
-            $actividad = tarea::create([
-                'id_p_trabajo'=>$request->idpt,
-                'id_actividad'=>$request->idact,
-                'horas_semanales'=>$request->semanales,
-                'horas_semestre'=>$request->semestrales,
-                'descripcion'=>$request->titulo,
-                'descripcion2'=>$request->descripcion
-            ]);
-            return back()->with('Correcto','Registrado correctamente');
-            
-        } 
-    }
+   
     public function destroy($id){
         $p_trabajo = p_trabajo::find($id);
         $p_trabajo->delete();

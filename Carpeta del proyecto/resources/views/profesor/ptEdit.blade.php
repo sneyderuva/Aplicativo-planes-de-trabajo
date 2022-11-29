@@ -222,7 +222,8 @@
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse{{$duplicate_array[$value]}}" aria-expanded="false" aria-controls="collapseTwo">
                                             {{$nombres[$duplicate_array[$value]]}}
-                                            <?php $id_deactividad=$idesAct[$x]?>
+                                            <?php if(count($idesAct)>=$x){
+                                                $id_deactividad=$idesAct[$x];}?>
                                         </button>
                                     </h2>
                                     <div id="collapse{{$duplicate_array[$value]}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
