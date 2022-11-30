@@ -18,8 +18,10 @@ use App\Http\Controllers\TareasController;
 |
 */
 
-
-Route::get('/', [ProfesorController::class,'progreso']);
+Auth::routes();
+Route::get('/', [ProfesorController::class,'progreso'])
+    ->middleware('auth')
+    ->name('home');
 Route::post('/', [ProfesorController::class,'store_pt']);
 Route::get('/perfil', [ProfileController::class,'perfil']);
 
@@ -32,12 +34,13 @@ Route::group(['prefix'=>'perfil','as'=>'perfil'],function(){
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
     Route::get('/',[AdminController::class,'index'])
-    ->middleware('auth.admin')
-    ->name('admin.index');
+        ->middleware('auth')
+        ->name('admin.index');
     Route::get('/usuarios',[ProfileController::class,'index'])
-    ->middleware('auth.admin')
-    ->name('admin.index');
-    Route::resource('/usuarios',ProfileController::class);
+        ->middleware('auth')
+        ->name('admin.index');
+    Route::resource('/usuarios',ProfileController::class)
+        ->middleware('auth');
     
     Route::delete('/usuarios/{id}',[ProfileController::class,'destroy']);
     Route::post('/usuarios/edit',[ProfileController::class,'editarUsuario']);
@@ -70,10 +73,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

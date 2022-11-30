@@ -6,7 +6,15 @@ use Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
-{
+{   /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('adminAuth');
+    }
     public function index(){
         return view('administrador/admin');
     }
@@ -15,3 +23,4 @@ class AdminController extends Controller
     }
 
 }
+

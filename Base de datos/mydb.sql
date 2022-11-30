@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2022 a las 20:26:09
+-- Tiempo de generación: 30-11-2022 a las 20:13:42
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -132,7 +132,9 @@ INSERT INTO `esactividads` (`id`, `id_plan_trabajo`, `id_tipo_actividad`, `horas
 (8, 2, 1, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
 (9, 2, 3, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
 (10, 2, 4, 0, 0, '2022-11-24 04:19:21', '2022-11-24 04:19:21', '0'),
-(11, 4, 0, 10, 22, '2022-11-24 09:20:14', '2022-11-24 09:20:14', NULL);
+(11, 4, 0, 10, 22, '2022-11-24 09:20:14', '2022-11-24 09:20:14', NULL),
+(12, 4, 1, 10, 22, '2022-11-29 09:44:58', '2022-11-29 09:44:58', NULL),
+(13, 4, 2, 0, 0, '2022-11-29 09:57:13', '2022-11-29 09:57:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -227,29 +229,35 @@ CREATE TABLE `opcion_evaluaciones` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesores`
+-- Estructura de tabla para la tabla `profesrs`
 --
 
-CREATE TABLE `profesores` (
+CREATE TABLE `profesrs` (
   `id` int(11) NOT NULL,
   `id_usuario` int(12) NOT NULL,
-  `id_programa` int(11) NOT NULL,
-  `id_vinculacion` int(4) NOT NULL,
-  `id_dedicacion` int(4) NOT NULL,
-  `direccion` varchar(45) NOT NULL,
-  `telefono` bigint(10) NOT NULL,
-  `escalafon` varchar(45) DEFAULT NULL
+  `id_programa` int(11) DEFAULT NULL,
+  `id_vinculacion` int(4) DEFAULT NULL,
+  `id_dedicacion` int(4) DEFAULT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `telefono` bigint(10) DEFAULT NULL,
+  `escalafon` varchar(45) DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `profesores`
+-- Volcado de datos para la tabla `profesrs`
 --
 
-INSERT INTO `profesores` (`id`, `id_usuario`, `id_programa`, `id_vinculacion`, `id_dedicacion`, `direccion`, `telefono`, `escalafon`) VALUES
-(1, 1, 1, 1, 1, 'calle 29b 11-16', 3212486521, 'hola'),
-(2, 2, 1, 2, 2, 'barrio el yopo', 321248652, 'hola'),
-(3, 3, 1, 2, 2, 'casimena', 3144722469, 'hola'),
-(4, 1, 1, 1, 3, 'casiquiare', 3212486521, 'hola');
+INSERT INTO `profesrs` (`id`, `id_usuario`, `id_programa`, `id_vinculacion`, `id_dedicacion`, `direccion`, `telefono`, `escalafon`, `created_at`, `updated_at`) VALUES
+(0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29', '2022-11-29'),
+(1, 1, 1, 1, 1, 'calle 29b 11-16', 3212486521, 'hola', '0000-00-00', '0000-00-00'),
+(2, 2, 1, 2, 2, 'barrio el yopo', 321248652, 'hola', '0000-00-00', '0000-00-00'),
+(3, 3, 1, 2, 2, 'casimena', 3144722469, 'hola', '0000-00-00', '0000-00-00'),
+(4, 1, 1, 1, 3, 'casiquiare', 3212486521, 'hola', '0000-00-00', '0000-00-00'),
+(5, 5, NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29', '2022-11-29'),
+(7, 3, NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29', '2022-11-29'),
+(8, 2, NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -294,7 +302,21 @@ INSERT INTO `p_trabajos` (`id`, `id_profesor`, `id_semestre`, `horas_semana`, `h
 (1, 1, 1, 24, 326, '2022-10-30 05:08:50', '2022-10-30 03:09:30'),
 (2, 2, 2, 22, 365, '2022-10-30 05:16:02', '2022-10-30 03:09:47'),
 (3, 3, 1, 44, 222, '2022-10-30 14:36:09', '2022-10-30 19:03:03'),
-(4, 3, 1, 0, 0, '2022-11-24 08:44:17', '2022-11-24 08:44:17');
+(4, 3, 1, 0, 0, '2022-11-24 08:44:17', '2022-11-24 08:44:17'),
+(5, 3, 2, 0, 0, '2022-11-29 10:31:40', '2022-11-29 10:31:40'),
+(6, 5, 2, 0, 0, '2022-11-29 10:35:15', '2022-11-29 10:35:15'),
+(7, 5, 2, 0, 0, '2022-11-29 10:40:13', '2022-11-29 10:40:13'),
+(8, 5, 2, 0, 0, '2022-11-29 10:48:10', '2022-11-29 10:48:10'),
+(9, 5, 2, 0, 0, '2022-11-29 10:51:55', '2022-11-29 10:51:55'),
+(10, 5, 2, 0, 0, '2022-11-29 10:52:58', '2022-11-29 10:52:58'),
+(11, 5, 1, 0, 0, '2022-11-29 10:54:03', '2022-11-29 10:54:03'),
+(12, 5, 1, 0, 0, '2022-11-29 10:55:30', '2022-11-29 10:55:30'),
+(13, 5, 1, 0, 0, '2022-11-29 10:56:07', '2022-11-29 10:56:07'),
+(14, 5, 1, 0, 0, '2022-11-29 10:57:38', '2022-11-29 10:57:38'),
+(15, 5, 1, 0, 0, '2022-11-29 10:58:41', '2022-11-29 10:58:41'),
+(16, 5, 1, 0, 0, '2022-11-29 11:00:58', '2022-11-29 11:00:58'),
+(17, 5, 1, 0, 0, '2022-11-29 11:02:19', '2022-11-29 11:02:19'),
+(19, 2, 1, 0, 0, '2022-11-30 04:08:32', '2022-11-30 04:08:32');
 
 -- --------------------------------------------------------
 
@@ -360,7 +382,8 @@ INSERT INTO `tareas` (`id`, `id_actividad`, `id_p_trabajo`, `descripcion`, `desc
 (5, 4, 1, 'Gestión al programa académico', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
 (6, 4, 1, 'Reunión de Grupo de Trabajo', NULL, '2022-11-24 07:44:13', '0000-00-00 00:00:00'),
 (9, 11, 4, 'oioihoi', '+pke´fpked´fas', '2022-11-24 21:47:55', '2022-11-24 21:47:55'),
-(10, 11, 4, 'Actividades de preparación de clase', 'paosjdoiasd', '2022-11-24 21:56:30', '2022-11-24 21:56:30');
+(10, 11, 4, 'Actividades de preparación de clase', 'paosjdoiasd', '2022-11-24 21:56:30', '2022-11-24 21:56:30'),
+(14, 13, 4, 'Seminario Institucional', 'asñkmdpañsd', '2022-11-29 10:13:02', '2022-11-29 10:13:02');
 
 -- --------------------------------------------------------
 
@@ -463,7 +486,7 @@ CREATE TABLE `users` (
   `nombres` varchar(28) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
   `apellidos` varchar(48) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
   `email` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `password` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -473,11 +496,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `n_documento`, `id_tipo_usuario`, `id_tipo_documento`, `nombres`, `apellidos`, `email`, `password`, `updated_at`, `created_at`) VALUES
-(1, 1006556454, 5, 0, 'Freddy Sneyder', 'Cedeño Uva', 'sneyderu1@gmail.com', '3144722469Ss', '2022-10-29 06:02:35', '2022-10-28 22:00:19'),
-(2, 1006558921, 1, 0, 'Paula Daniela', 'Avendaño', 'paula.sanchez10@uptc.eu.co', '12345678', '2022-10-29 06:03:17', '2022-10-29 04:25:02'),
-(3, 0, 4, 0, 'Alfonso', 'López Tovar', 'lopeztovar@gmail.com', '12345678', '2022-10-29 12:03:05', '2022-10-29 04:33:16'),
+(1, 1006556454, 5, 0, 'Freddy Sneyder', 'Cedeño Uva', 'sneyderu1@gmail.com', '$2y$10$Qnw/oFWcqJ5LkgQFVg7MF.sht3dmO7pkGQWwIjNz9ckmzadbZjwfS', '2022-11-29 10:26:09', '2022-10-28 22:00:19'),
+(2, 1006558921, 1, 0, 'Paula Daniela', 'Avendaño', 'paula.sanchez10@uptc.edu.co', '$2y$10$6DLhNQKzV1zWARNY3qi1.uQeYUibz3M6TLc0REA6xXH7Uc0EdWCle', '2022-11-30 04:07:28', '2022-10-29 04:25:02'),
+(3, 0, 4, 0, 'Alfonso', 'López Tovar', 'alfonsolopez@unitropico.edu.co', '$2y$10$jQrjkb6sU1vMtPBOzR1Axu3yyu1b5pvaB9zM.n.uz9lSgdTxYIvOC', '2022-11-29 08:45:24', '2022-10-29 04:33:16'),
 (4, 0, 1, 0, 'Pedro Antonio', 'Caro Bernal', 'pedro@gmail.com', '12345678', '2022-10-29 06:02:58', '2022-10-29 04:33:55'),
-(5, 100000000, 1, 0, 'didier', 'morales', 'didier@gmail.com', '12345678', '2022-10-30 03:16:20', '2022-10-29 12:26:47');
+(5, 100000000, 1, 0, 'didier', 'morales', 'didier@gmail.com', '$2y$10$07R2IeSOk68/Fod5Q6w0wuIjfNAV8fO1RPgUuR4BnkiA9C96YFeri', '2022-11-29 10:28:08', '2022-10-29 12:26:47');
 
 --
 -- Índices para tablas volcadas
@@ -563,9 +586,9 @@ ALTER TABLE `opcion_evaluaciones`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `profesores`
+-- Indices de la tabla `profesrs`
 --
-ALTER TABLE `profesores`
+ALTER TABLE `profesrs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -659,7 +682,7 @@ ALTER TABLE `dedicacion_tipos`
 -- AUTO_INCREMENT de la tabla `esactividads`
 --
 ALTER TABLE `esactividads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencias`
@@ -680,6 +703,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `profesrs`
+--
+ALTER TABLE `profesrs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `p_academicos`
 --
 ALTER TABLE `p_academicos`
@@ -689,7 +718,7 @@ ALTER TABLE `p_academicos`
 -- AUTO_INCREMENT de la tabla `p_trabajos`
 --
 ALTER TABLE `p_trabajos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `rubricas`
@@ -707,7 +736,7 @@ ALTER TABLE `semestres`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documentos`
