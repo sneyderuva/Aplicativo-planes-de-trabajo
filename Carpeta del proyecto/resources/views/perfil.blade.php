@@ -13,7 +13,7 @@
             <h5 class="card-title text-bold text-dark">Información personal</h5>
             <p class="card-text">Edita tus datos personales para o actualizalos cuando lo veas necesario</p>
             <hr class="hr"></hr>
-            <a href="#" class="card-link">Editar datos personales</a>
+            <a href="/perfil/datos" class="card-link">Editar datos personales</a>
         </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
             <h5 class="card-title text-bold text-dark">Seguridad y privacidad</h5>
             <p class="card-text">Configura las opciones de privacidad, cambia contraseña, establece tus preferencias a conformidad.</p>
             <hr class="hr"></hr>
-            <a href="#" class="card-link">Ir a seguridad y privacidad</a>
+            <a href="/perfil/seguridad" class="card-link">Ir a seguridad y privacidad</a>
         </div>
     </div>
   <div class="p-2">Flex item 3</div>

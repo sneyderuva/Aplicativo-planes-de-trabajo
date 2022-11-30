@@ -1,14 +1,108 @@
 @extends('layouts.mainadmin')
 @section('titulo')
 <title>Usuarios</title>
+@section('nave')
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+                <a class="nav-link" href="{{asset('/dash/index.html')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Usuarios</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+ <!-- #region -->
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interfaz
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Configuración</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/buttons.html')}}">Buttons</a>
+                        <a class="collapse-item" href="{{asset('/dash/cards.html')}}">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilidades</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-color.html')}}">Colors</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-border.html')}}">Borders</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-animation.html')}}">Animations</a>
+                        <a class="collapse-item" href="{{asset('/dash/utilities-other.html')}}">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Sistema
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Páginas</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/login.html')}}">Login</a>
+                        <a class="collapse-item" href="{{asset('/dash/register.html')}}">Register</a>
+                        <a class="collapse-item" href="{{asset('/dash/forgot-password.html')}}">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="{{asset('/dash/404.html')}}">404 Page</a>
+                        <a class="collapse-item" href="{{asset('/dash/blank.html')}}">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{asset('/dash/charts.html')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Acceso</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{asset('/dash/tables.html')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Control de usuarios</span></a>
+            </li>
+@endsection
 @section('contenido')
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 id="navs">Usuarios</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregar">
-            <i class="fas fa-user fa-sm text-white-50"></i> Agregar Usuario</a>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregarSemestre">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Agregar semestre</a>
-            
+    
+    <div class="d-flex">
+        <div class="mr-auto p-2"><h1 id="navs">Usuarios</h1></div>
+        <div class="p-2"><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregar">
+            <i class="fas fa-user fa-sm text-white-50"></i> Agregar Usuario</a></div>
+        <div class="p-2"><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#ModalAgregarSemestre">
+            <i class="fas fa-plus fa-sm text-white-50 color-g"></i> Agregar semestre</a></div>
     </div>
 
     <!-- Navs Tabs ================================================== -->
@@ -509,7 +603,7 @@
                         </div>
                         <div class="form-group">
                             <select name="ntipo_usuario" id="tipo_usuarioEdit" class="form-select" aria-label="Default select example">
-                                <option selected>Tipo de usuario</option>
+                                <option value="" >Tipo de usuario</option>
 
                                 @foreach ($tipousuarios as $tipousuario)
                                     <option value="{{ $tipousuario->id }}">{{ $tipousuario->nombre_tipo }}</option>
@@ -545,6 +639,10 @@
     <!-- End Modal Editar-->
     
 @endsection
+
+
+
+
 @section('scripts')
 <script>
     var idEliminar=0;

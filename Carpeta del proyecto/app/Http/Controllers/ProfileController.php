@@ -16,6 +16,14 @@ class ProfileController extends Controller
         return view('perfil');
     }
 
+    public function datosPersonales(){
+        return view('Profesor.DatosPersonales');
+    }
+    public function seguridad(){
+        return view('seguridad');
+    }
+    
+
     public function login(){
         return view('layouts.login');
     }

@@ -79,6 +79,7 @@ class ProfesorController extends Controller
             ->orderBy('id','ASC')
             ->get();   
         $p_trabajos = \DB::table('p_trabajos')
+            ->where('profesrs.id','=',Auth::User()->id)
             ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
             ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')

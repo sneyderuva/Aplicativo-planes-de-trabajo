@@ -3,7 +3,7 @@
 <title>Profesor</title>
 @endsection
 @section('contenido')
-    <?php $x=0;?>
+    <?php $x=$count_p_trabajos;?>
         @if($x==0)
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-center mb-4">
@@ -73,7 +73,7 @@
                                             <button class="btn btn-round btnEliminar" data-id="{{ $p_trabajo->id }}"  data-toggle="modal" data-target="#ModalEliminar">
                                                 <i class="fa fa-trash text-danger"></i>
                                             </button>
-                                            <form action="{{ url('/',['id'=>$p_trabajo->id]) }}" method="post" id="formEli_{{ $p_trabajo->id }}">
+                                            <form action="{{ url('/p',['id'=>$p_trabajo->id]) }}" method="post" id="formEli_{{ $p_trabajo->id }}">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $p_trabajo->id }}">
                                                 <input type="hidden" name="_method" value="delete">

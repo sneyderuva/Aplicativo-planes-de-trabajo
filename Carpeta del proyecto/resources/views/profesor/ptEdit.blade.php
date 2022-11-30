@@ -79,7 +79,7 @@
                             </tr>
                         </tbody>
                         </table>
-                        <a href="#" class="btn btn-primary">Guardar</a>
+                        
 
                     @endif
                     
@@ -148,8 +148,6 @@
                     </tbody>
                 </table>
 
-                
-                <a href="#" class="btn btn-primary">Guardar</a>
                 @endif
             @endforeach
             

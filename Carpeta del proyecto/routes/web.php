@@ -23,13 +23,22 @@ Route::get('/', [ProfesorController::class,'progreso']);
 Route::post('/', [ProfesorController::class,'store_pt']);
 Route::get('/perfil', [ProfileController::class,'perfil']);
 
+Route::group(['prefix'=>'perfil','as'=>'perfil'],function(){
+    Route::get('/', [ProfileController::class,'perfil']);
+    Route::get('/datos', [ProfileController::class,'datosPersonales']);
+    Route::get('/seguridad', [ProfileController::class,'seguridad']);
 
-
+});
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function(){
-    Route::get('/',[AdminController::class,'index']);
-    Route::get('/usuarios',[ProfileController::class,'index']);
+    Route::get('/',[AdminController::class,'index'])
+    ->middleware('auth.admin')
+    ->name('admin.index');
+    Route::get('/usuarios',[ProfileController::class,'index'])
+    ->middleware('auth.admin')
+    ->name('admin.index');
     Route::resource('/usuarios',ProfileController::class);
+    
     Route::delete('/usuarios/{id}',[ProfileController::class,'destroy']);
     Route::post('/usuarios/edit',[ProfileController::class,'editarUsuario']);
 
@@ -37,7 +46,9 @@ Route::group(['prefix'=>'admin','as'=>'admin'],function(){
 Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/', [ProfesorController::class,'resumen']); 
     Route::get('/a', [ProfesorController::class,'actividades']); 
+    Route::delete('/{id}', [ProfesorController::class,'destroy']);
     Route::get('/{id}', [ProfesorController::class,'editPT']);
+    
     Route::post('/{id}',[ProfesorController::class,'store_actividades']);
     Route::post('/{id}',[TareasController::class,'store_tareas']);
 
