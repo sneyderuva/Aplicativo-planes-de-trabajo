@@ -25,8 +25,7 @@ class TareasController extends Controller
             $actividad = tarea::create([
                 'id_p_trabajo'=>$request->idpt,
                 'id_actividad'=>$request->idact,
-                'horas_semanales'=>$request->semanales,
-                'horas_semestre'=>$request->semestrales,
+                'horas'=>$request->semanales,
                 'descripcion'=>$request->titulo,
                 'descripcion2'=>$request->descripcion
             ]);

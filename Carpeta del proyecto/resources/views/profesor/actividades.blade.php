@@ -23,12 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#pc">Tareas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#po">Profesores ocasionales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#semestres">Semestres</a>
-                        </li>
+                       
                         
                     </ul>
                     <div id="myTabContent" class="tab-content">

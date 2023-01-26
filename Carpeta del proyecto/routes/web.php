@@ -22,13 +22,22 @@ Auth::routes();
 Route::get('/', [ProfesorController::class,'progreso'])
     ->middleware('auth')
     ->name('home');
-Route::post('/', [ProfesorController::class,'store_pt']);
-Route::get('/perfil', [ProfileController::class,'perfil']);
-
+Route::post('/', [ProfesorController::class,'store_pt'])
+    ->middleware('auth')
+    ->name('home');
+Route::get('/perfil', [ProfileController::class,'perfil'])
+    ->middleware('auth')
+    ->name('home');
 Route::group(['prefix'=>'perfil','as'=>'perfil'],function(){
-    Route::get('/', [ProfileController::class,'perfil']);
-    Route::get('/datos', [ProfileController::class,'datosPersonales']);
-    Route::get('/seguridad', [ProfileController::class,'seguridad']);
+    Route::get('/', [ProfileController::class,'perfil'])
+        ->middleware('auth')
+        ->name('home');
+    Route::get('/datos', [ProfileController::class,'datosPersonales'])
+        ->middleware('auth')
+        ->name('home');
+    Route::get('/seguridad', [ProfileController::class,'seguridad'])
+->middleware('auth')
+    ->name('home');
 
 });
 
@@ -39,9 +48,12 @@ Route::group(['prefix'=>'admin','as'=>'admin'],function(){
     Route::get('/usuarios',[ProfileController::class,'index'])
         ->middleware('auth')
         ->name('admin.index');
-    Route::resource('/usuarios',ProfileController::class)
-        ->middleware('auth');
-    
+    Route::post('/usuarios/u',[ProfileController::class,'store'])
+        ->middleware('auth')
+        ->name('admin.index');
+    Route::post('/usuarios/s',[ProfileController::class,'store_semestre'])
+        ->middleware('auth')
+        ->name('admin.index');
     Route::delete('/usuarios/{id}',[ProfileController::class,'destroy']);
     Route::post('/usuarios/edit',[ProfileController::class,'editarUsuario']);
 
@@ -51,9 +63,8 @@ Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/a', [ProfesorController::class,'actividades']); 
     Route::delete('/{id}', [ProfesorController::class,'destroy']);
     Route::get('/{id}', [ProfesorController::class,'editPT']);
-    
+    Route::post('/{id}/st',[TareasController::class,'store_tareas']);
     Route::post('/{id}',[ProfesorController::class,'store_actividades']);
-    Route::post('/{id}',[TareasController::class,'store_tareas']);
 
     Route::get('/{id}/t', [ProfesorController::class,'backPT']);
     Route::post('/{id}/t', [ProfesorController::class,'tareas']);

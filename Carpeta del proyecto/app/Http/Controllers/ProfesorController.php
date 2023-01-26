@@ -23,9 +23,45 @@ class ProfesorController extends Controller
             ->select('users.*')
             ->orderBy('id','DESC')
             ->get();
-        
+        $profesores = \DB::table('profesrs')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->select('profesrs.*','tipo_vinculaciones.nombre_tipo_vinculacion')
+            ->orderBy('id','ASC')
+            ->get();
+        $semestres = \DB::table('semestres')
+            ->select('semestres.*')
+            ->orderBy('id','DESC')
+            ->get();
+        $vinculaciones = \DB::table('tipo_vinculaciones')
+            ->select('tipo_vinculaciones.*')
+            ->orderBy('id','ASC')
+            ->get();
+        $dedicaciones = \DB::table('dedicacion_tipos')
+            ->select('dedicacion_tipos.*')
+            ->orderBy('id','ASC')
+            ->get();   
+        $p_trabajos = \DB::table('p_trabajos')
+            ->where('profesrs.id','=',Auth::User()->id)
+            ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
+            ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
+            ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
+            ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
+            ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','semestres.inicio','semestres.final','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
+            ->orderBy('id','ASC')
+            ->get(); 
+      
+        $count_p_trabajos = $p_trabajos->count();
         return view('profesor.progreso')
-            ->with('usuario',$usuarios);
+            ->with('usuario',$usuarios)
+            ->with('semestres',$semestres)
+            ->with('usuarios',$usuarios)
+            ->with('vinculaciones',$vinculaciones)
+            ->with('dedicaciones',$dedicaciones)
+            ->with('p_trabajos',$p_trabajos)
+            ->with('count_p_trabajos',$count_p_trabajos)
+        ;
+        
+        
     }
 
     public function store_pt(Request $request){
@@ -70,6 +106,13 @@ class ProfesorController extends Controller
             ->select('semestres.*')
             ->orderBy('id','DESC')
             ->get();
+
+        $tareas = \DB::table('tareas')
+            ->join('esactividads','esactividads.id','=','tareas.id_actividad')
+            ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','esactividads.id_tipo_actividad')
+            ->select('tareas.*','tipo_actividades.id_tipo_actividad')
+            ->orderBy('id','DESC')
+            ->get();
         $vinculaciones = \DB::table('tipo_vinculaciones')
             ->select('tipo_vinculaciones.*')
             ->orderBy('id','ASC')
@@ -96,6 +139,7 @@ class ProfesorController extends Controller
         ->with('dedicaciones',$dedicaciones)
         ->with('p_trabajos',$p_trabajos)
         ->with('count_p_trabajos',$count_p_trabajos)
+        ->with('tareas',$tareas)
         ;
     }
 
@@ -286,7 +330,7 @@ class ProfesorController extends Controller
 
         $id_p_trabajo = $request->id_p_trabajo;
         $nombre_tarea = $request->nombre_tarea;
-        return view('profesor.actividades')
+        return view('profesor.DetalleActividad')
         ->with('id_p_trabajo',$id_p_trabajo)
         ->with('nombre_tarea',$nombre_tarea)
         ->with('nombre_actividad',$request->nombre_actividad);
