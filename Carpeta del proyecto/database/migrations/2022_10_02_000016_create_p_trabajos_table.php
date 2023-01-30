@@ -27,6 +27,7 @@ class CreatePTrabajosTable extends Migration
             $table->increments('id');
             $table->integer('id_profesor');
             $table->integer('id_semestre', 45);
+            $table->integer('estado', 5);
             $table->float('horas_semana', 5);
             $table->float('horas_semestre', 5);
 

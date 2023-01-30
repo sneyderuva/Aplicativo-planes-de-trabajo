@@ -47,7 +47,7 @@ class ProfesorController extends Controller
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
             ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
             ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','semestres.inicio','semestres.final','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
-            ->orderBy('id','ASC')
+            ->orderBy('id','DESC')
             ->get(); 
       
         $count_p_trabajos = $p_trabajos->count();
@@ -59,9 +59,7 @@ class ProfesorController extends Controller
             ->with('dedicaciones',$dedicaciones)
             ->with('p_trabajos',$p_trabajos)
             ->with('count_p_trabajos',$count_p_trabajos)
-        ;
-        
-        
+        ;        
     }
 
     public function store_pt(Request $request){
@@ -120,17 +118,24 @@ class ProfesorController extends Controller
         $dedicaciones = \DB::table('dedicacion_tipos')
             ->select('dedicacion_tipos.*')
             ->orderBy('id','ASC')
-            ->get();   
+            ->get();
+        $estados = \DB::table('estados')
+            ->select('estados.*')
+            ->orderBy('id','DESC')
+            ->get();
+
         $p_trabajos = \DB::table('p_trabajos')
+                    
             ->where('profesrs.id','=',Auth::User()->id)
             ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
             ->join('tipo_vinculaciones', 'tipo_vinculaciones.id', '=', 'profesrs.id_vinculacion')
             ->join('semestres', 'semestres.id', '=', 'p_trabajos.id_semestre')
             ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
-
-            ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
-            ->orderBy('id','ASC')
+            ->join('estados', 'estados.id', '=', 'p_trabajos.estado')
+            ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','estados.nombre_estado','semestres.inicio','semestres.final','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
+            ->orderBy('id','DESC')
             ->get();     
+
         $count_p_trabajos = $p_trabajos->count();
         return view('profesor.resumen')
         ->with('semestres',$semestres)
@@ -140,6 +145,7 @@ class ProfesorController extends Controller
         ->with('p_trabajos',$p_trabajos)
         ->with('count_p_trabajos',$count_p_trabajos)
         ->with('tareas',$tareas)
+        ->with('estados',$estados)
         ;
     }
 
@@ -203,7 +209,7 @@ class ProfesorController extends Controller
             ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','esactividads.id_tipo_actividad')
             ->select('esactividads.*','tipo_actividades.nombre_tipo_actividad')
             
-            ->orderBy('id','ASC')
+            ->orderBy('id','DESC')
             ->get();
         
         $tareas = \DB::table('tareas')
@@ -309,10 +315,11 @@ class ProfesorController extends Controller
             ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
             ->join('p_academicos','p_academicos.id','=','profesrs.id_programa')
             ->join('facultades','facultades.id','=','p_academicos.idfacultad')
+            ->join('estados','estados.id','=','p_trabajos.estado')
             ->select('p_trabajos.*','profesrs.direccion','profesrs.telefono','profesrs.escalafon',
             'semestres.nombre_semestre','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion',
             'users.n_documento','tipo_documentos.n_tipo_documento','users.email','users.nombres','users.apellidos',
-            'p_academicos.nombre_programa','facultades.nombre_facultad')
+            'p_academicos.nombre_programa','facultades.nombre_facultad','estados.nombre_estado')
             ->orderBy('id','ASC')
             ->get();     
             $array = array('id_p_trabajo'=>$id_p_trabajo,'semestres'=>$semestres,
@@ -327,13 +334,31 @@ class ProfesorController extends Controller
     }
 
     public function tareas(Request $request){
-
         $id_p_trabajo = $request->id_p_trabajo;
         $nombre_tarea = $request->nombre_tarea;
+        
+        $tareas = \DB::table('tareas')
+            
+            ->where('tareas.id','=',$request->id_tarea)
+            ->join('esactividads','esactividads.id','=','tareas.id_actividad')
+            ->join('tipo_actividades','tipo_actividades.id_tipo_actividad','=','esactividads.id_tipo_actividad')
+            ->select('tareas.*','tipo_actividades.id_tipo_actividad')
+            ->orderBy('id','DESC')
+            ->get();
+
+
+        $subtareas = \DB::table('subtareas')
+            
+            ->where('subtareas.id_p_trabajo_tarea','=',$id_p_trabajo)
+            ->orderBy('id','DESC')
+            ->get();
+        
         return view('profesor.DetalleActividad')
         ->with('id_p_trabajo',$id_p_trabajo)
         ->with('nombre_tarea',$nombre_tarea)
-        ->with('nombre_actividad',$request->nombre_actividad);
+        ->with('nombre_actividad',$request->nombre_actividad)
+        ->with('subtareas',$subtareas)
+        ->with('tareas',$tareas);
     }
 
     public function backPT(){
@@ -366,6 +391,11 @@ class ProfesorController extends Controller
         $p_trabajo = p_trabajo::find($id);
         $p_trabajo->delete();
         return back()->with('Borrado','Eliminado Correctamente');
-        
     }
+    public function destroy_act($id){
+        $actividad = Esactividad::find($id);
+        $actividad->delete();
+        return back()->with('Borrado','Eliminado Correctamente');
+    }
+    
 }

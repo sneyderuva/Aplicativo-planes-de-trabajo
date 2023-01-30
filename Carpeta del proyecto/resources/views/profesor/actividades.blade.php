@@ -18,10 +18,10 @@
                     <ul class="nav nav-tabs">
                         
                         <li class="nav-item ">
-                            <a class="nav-link active" data-toggle="tab" href="#pt">Actividades</a>
+                            <a class="nav-link active" data-toggle="tab" href="#act">Actividades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#pc">Tareas</a>
+                            <a class="nav-link" data-toggle="tab" href="#tar">Tareas</a>
                         </li>
                        
                         

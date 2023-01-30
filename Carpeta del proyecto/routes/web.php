@@ -59,11 +59,19 @@ Route::group(['prefix'=>'admin','as'=>'admin'],function(){
 
 });
 Route::group(['prefix'=>'p','as'=>'p'],function(){
-    Route::get('/', [ProfesorController::class,'resumen']); 
+    Route::get('/', [ProfesorController::class,'resumen'])
+        ->middleware('auth')
+        ->name('admin.index'); 
     Route::get('/a', [ProfesorController::class,'actividades']); 
-    Route::delete('/{id}', [ProfesorController::class,'destroy']);
-    Route::get('/{id}', [ProfesorController::class,'editPT']);
+    Route::delete('/{id}', [ProfesorController::class,'destroy'])
+        ->middleware('auth')
+        ->name('admin.index');
+    
+    Route::get('/{id}', [ProfesorController::class,'editPT'])
+        ->middleware('auth')
+        ->name('admin.index');
     Route::post('/{id}/st',[TareasController::class,'store_tareas']);
+    Route::post('/{id}/sst',[TareasController::class,'store_subtareas']);
     Route::post('/{id}',[ProfesorController::class,'store_actividades']);
 
     Route::get('/{id}/t', [ProfesorController::class,'backPT']);
@@ -78,8 +86,12 @@ Route::group(['prefix'=>'u','as'=>'usuario'],function(){
 
     
 });
+##DELETES!
 
+Route::delete('/t/{idt}', [TareasController::class,'destroy']);
+Route::delete('/a/{id}', [ProfesorController::class,'destroy_act']);
 
+##END DELETES
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

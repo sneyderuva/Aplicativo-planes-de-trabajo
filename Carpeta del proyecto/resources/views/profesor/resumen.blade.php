@@ -1,8 +1,22 @@
 @extends('layouts.mainprofesor')
 @section('titulo')
-<title>Profesor</title>
+<title>Planes de trabajo</title>
 @endsection
 @section('contenido')
+    <?php date_default_timezone_set("America/Bogota");    
+        
+        foreach($p_trabajos as $p_trabajo){
+        
+            $actual=date("d-m-Y");
+            
+            if(time()>strtotime($p_trabajo->inicio) && time()<strtotime($p_trabajo->final)){
+                echo $p_trabajo->nombre_semestre."<br>";
+                $id_p_trabajo=$p_trabajo->id;
+            }else{
+                $id_p_trabajo="Ninguno";
+            }
+        }
+        ?>
     <?php $x=$count_p_trabajos;?>
         @if($x==0)
                 <!-- Page Heading -->
@@ -33,7 +47,8 @@
                                 <th>dedicación</th>                                            
                                 <th>Horas Semana</th>
                                 <th>Horas semestre</th>
-                                <th>Fecha de Creación</th>
+                                <th>Creación</th>
+                                <th>Estado</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -41,7 +56,14 @@
                             
                             @foreach($p_trabajos as $p_trabajo)
                             @if($p_trabajo->id_profesor ==Auth::User()->id)
-                                    <tr>
+                            
+                                    <tr class="<?php $actual=date("d-m-Y");
+                                        if(time()>strtotime($p_trabajo->inicio) && time()<strtotime($p_trabajo->final)){
+                                            echo "table-warning";
+                                            $id_p_trabajo=$p_trabajo->id;
+                                        }else{
+                                            echo "table-success";
+                                        }?>">
                                         <td>
                                         <?php $id_p_trabajo=$p_trabajo->id;
                                             switch($id_p_trabajo){
@@ -64,11 +86,12 @@
                                         <td>{{$p_trabajo->nombre_tipo_dedicacion}}</td>
                                         <td>{{$p_trabajo->horas_semana}} horas</td>
                                         <td>{{$p_trabajo->horas_semestre}} horas</td>
-                                        <td>{{$p_trabajo->created_at}}</td>
+                                        <td>{{date("d-m-Y",strtotime($p_trabajo->created_at))}}</td>
+                                        <td>{{$p_trabajo->nombre_estado}}</td>
                                         <td>
                                             <a class="btn btn-round btnEditar" href="{{ url('/p',['id'=>$p_trabajo->id ])}}"
                                                 data-id="{{ $p_trabajo->id }}"
-                                                ><i class="fa fa-edit text-warning"></i>
+                                                ><i class="fa fa-edit text-primary"></i>
                                             </a>
                                             <button class="btn btn-round btnEliminar" data-id="{{ $p_trabajo->id }}"  data-toggle="modal" data-target="#ModalEliminar">
                                                 <i class="fa fa-trash text-danger"></i>
@@ -209,18 +232,20 @@
 @section('navbar')
 <li class="nav-item">
         <a class="nav-link" href="{{url('/')}}">
-            <i class="fas fa-fw fa-archive"></i>
-            <span>Progreso</span></a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+            </svg>
+            <span>  Progreso</span></a>
         </li>
         <!-- Heading -->
         <li class="nav-item active">
             <a class="nav-link " href="{{url('/p')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-archive"></i>
                 <span>Planes de trabajo</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('/p/a')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-edit"></i>
                 <span>Mis actividades</span></a>
         </li>
         <!-- Divider -->
@@ -234,7 +259,7 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="{{url('/p/r')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-clipboard-check"></i>
                 <span>Resultados</span></a>
         </li>
 @endsection
