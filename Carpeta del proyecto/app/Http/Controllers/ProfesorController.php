@@ -40,6 +40,7 @@ class ProfesorController extends Controller
             ->select('dedicacion_tipos.*')
             ->orderBy('id','ASC')
             ->get();   
+        
         $p_trabajos = \DB::table('p_trabajos')
             ->where('profesrs.id','=',Auth::User()->id)
             ->join('profesrs', 'profesrs.id', '=', 'p_trabajos.id_profesor')
@@ -48,8 +49,12 @@ class ProfesorController extends Controller
             ->join('dedicacion_tipos', 'dedicacion_tipos.id', '=', 'profesrs.id_dedicacion')
             ->select('p_trabajos.*','profesrs.direccion','semestres.nombre_semestre','semestres.inicio','semestres.final','tipo_vinculaciones.nombre_tipo_vinculacion','dedicacion_tipos.nombre_tipo_dedicacion')
             ->orderBy('id','DESC')
-            ->get(); 
-      
+            ->get();
+        $tareas = \DB::table('tareas')
+            ->select('tareas.*')
+            ->orderby('id','DESC')
+            ->get();
+     
         $count_p_trabajos = $p_trabajos->count();
         return view('profesor.progreso')
             ->with('usuario',$usuarios)
@@ -59,6 +64,8 @@ class ProfesorController extends Controller
             ->with('dedicaciones',$dedicaciones)
             ->with('p_trabajos',$p_trabajos)
             ->with('count_p_trabajos',$count_p_trabajos)
+            ->with('tareas',$tareas)
+            
         ;        
     }
 

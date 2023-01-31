@@ -124,8 +124,13 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 <a href="/p/a">Tareas pendientes</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php if($id_p_trabajo!="Ninguno"){
-                               echo $p_trabajo->horas_semestre;}else{echo "0";}?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $tareas_count=0;
+                                foreach($tareas as $tarea){
+                                    if($tarea->id_p_trabajo == $id_p_trabajo){
+                                        $tareas_count+=1;
+                                    }}
+                            if($id_p_trabajo!="Ninguno"){
+                               echo $tareas_count;}else{echo "0";}?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>

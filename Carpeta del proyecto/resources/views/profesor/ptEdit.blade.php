@@ -243,10 +243,15 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="p-2">
-                                                                                    <a class="btn btn-round btnEditar" title="Editar esta actividad" href="{{ url('/t',['id'=>$tarea->id])}}"
+                                                                                    <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditarTarea"
                                                                                         data-id="{{ $tarea->id }}"
+                                                                                        data-descripcion="{{ $tarea->descripcion }}"
+                                                                                        data-descripcion2="{{ $tarea->descripcion2 }}"
+                                                                                        data-horas="{{ $tarea->horas }}"
+                                                                                        data-horas_semestre="{{ $tarea->horas_semestre }}"
+                                                                                        data-semanas="{{ $tarea->semanas }}"
                                                                                         ><i class="fa fa-edit"></i>
-                                                                                    </a>
+                                                                                    </button>
                                                                                     <button class="btn btn-round btnEliminarTarea" data-id="{{ $tarea->id }}" title="Eliminar esta actividad" data-toggle="modal" data-target="#ModalEliminarTarea">
                                                                                         <i class="fa fa-trash "></i>
                                                                                     </button>
@@ -464,14 +469,15 @@
     <div class="modal-dialog" role="document"> 
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title text-primary" id="exampleModalLabel">Crear una nueva actividad</h5>
+            <h5 class="modal-title text-primary" id="exampleModalLabel">Editar actividad</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="/p/{{$id_p_trabajo}}" method="post">
+        <form action="/p/{{$id_p_trabajo}}/et" method="post">
             @csrf
             <div class="modal-body">
+                
                 <div class="row">
                     @if($message = Session::get('ErrorInsert'))
 
@@ -484,26 +490,34 @@
                         </div>
                     @endif
                 </div>
-                <div class="form-group">
-                    <select name="actividad" id="actividad" class="form-select" aria-label="select-actividad">
-                        <option  value="">Seleccione el tipo de actividad</option>
-                        @foreach ($tipo_acts as $act)
-                            <option value="{{ $act->id_tipo_actividad }}">{{ $act->nombre_tipo_actividad }}</option>
-                        @endforeach
-                    </select>
-
-
-                </div>
-                <div class="form-group">
-                    <input class="form-control" name="semanales" type="text" id="semanales" placeholder="Horas semanales">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" name="semestrales" type="text" id="semestrales" placeholder="Horas semestrales">
-                    <input class="form-control" name="idpt" type="hidden" id="idpt" value="{{$id_p_trabajo}}">
-
-                </div>
                 
+                <div class="form-group">
+                    <input class="form-control" name="ndescripcion" type="text" id="descripcionedit" title="Título de la tarea" placeholder="Titulo de la tarea">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="nhoras" type="number" id="e1" oninput="calcular2()" placeholder="Horas semanales" title="Ingresar la cantidad de horas a la semana que se realizará la actividad">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="nsemanas" type="number" id="e2" onload="calcular2()" placeholder="cantidad de semanas" title="Ingresar la cantidad de semanas en que se realizará la actividad">
+                </div>
+                <div class="form-group">
+                    <label >Horas semestrales: </label>
+                    <label class="text-success" onload="calcular2()" id="horas_semestreedit"><script> document.write(calcular2());</script></label>
+                    <input name="horas_semestre" type="hidden" id="e3">
+                </div>
+                <div class="form-group">
+                    
+                    <input class="form-control" name="idpt" type="hidden" id="idpt" value="{{$id_p_trabajo}}">
+                    <input class="form-control" name="idact" type="hidden" id="idact" value="{{$id_actividad}}">
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion2">Descripción</label>
+                    <textarea name="descripcion" id="descripcion"msg cols="30" rows="5" class="form-control" style="background-color: white;"></textarea>
+                </div>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Agregar</button>
@@ -512,6 +526,7 @@
         </div>
     </div>
     </div>
+    
     <!-- modal -->
     
     <!-- Modal Eliminar Tarea-->
@@ -597,6 +612,14 @@
             });
             $(".btnModalEliminarActividad").click(function(){
                 $("#formEli_"+idEliminar).submit();
+            });
+            $(".btnEditar").click(function(){
+                $("#idEdit").val($(this).data('id'));
+                $("#descripcionedit").val($(this).data('descripcion'));
+                $("#descripcion2edit").val($(this).data('descripcion2'));
+                $("#e1").val($(this).data('horas'));
+                $("#e2").val($(this).data('semanas'));
+                $("#horas_semestreedit").val($(this).data('horas_semestre'));
             });
         });
 </script>
