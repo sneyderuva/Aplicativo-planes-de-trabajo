@@ -8,12 +8,14 @@ function calcular(){
     return r;
 }
 function calcular2(){
-    var a = document.getElementById("e1").value,
-    b = document.getElementById("e2").value;
-    var r = a*b;
-    document.getElementById("horas_semestreedit").innerText = r;
-    document.getElementById("e3").value = r;
-    return r;
+    var e1 = document.getElementById("e1").value,
+    e2 = document.getElementById("e2").value;
+    var x = e1*e2;
+    document.getElementById("horas_semestreedit").innerText = x;
+    document.getElementById("e3").value = x;
+    return x;
 }
-const resultado=calcular();
+var resultado=calcular();
+
+var resultado2=calcular2();
 

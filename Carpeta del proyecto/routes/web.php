@@ -62,7 +62,9 @@ Route::group(['prefix'=>'p','as'=>'p'],function(){
     Route::get('/', [ProfesorController::class,'resumen'])
         ->middleware('auth')
         ->name('admin.index'); 
-    Route::get('/a', [ProfesorController::class,'actividades']); 
+    Route::get('/a', [ProfesorController::class,'actividades'])
+        ->middleware('auth')
+        ->name('admin.index');
     Route::delete('/{id}', [ProfesorController::class,'destroy'])
         ->middleware('auth')
         ->name('admin.index');
@@ -71,6 +73,7 @@ Route::group(['prefix'=>'p','as'=>'p'],function(){
         ->middleware('auth')
         ->name('admin.index');
     Route::post('/{id}/st',[TareasController::class,'store_tareas']);
+    Route::post('/{id}/et',[TareasController::class,'edit_tareas']);
     Route::post('/{id}/sst',[TareasController::class,'store_subtareas']);
     Route::post('/{id}',[ProfesorController::class,'store_actividades']);
 

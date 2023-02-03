@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="form-group">
                                     <select name="semestre" id="semestre" class="form-select" aria-label="select-semestre">
-                                        <option  value="">Seleccione el semestre</option>
+                                        <option  value="">Seleccione el periodo académico</option>
                                         @foreach ($semestres as $semestre)
                                             <option value="{{ $semestre->id }}">{{ $semestre->nombre_semestre }}</option>
                                         @endforeach

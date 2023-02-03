@@ -65,6 +65,35 @@ class TareasController extends Controller
             
         } 
     }
+    public function edit_tareas(Request $request){
+
+        $tarea = tarea::find($request->idt);
+        
+        $validator = Validator::make($request->all(),
+        ['ndescripcion'=>'required',
+        'nhoras'=>'required',
+        'nsemanas'=>'required',
+        'nhoras_semestre' =>'required']);
+
+        if($validator -> fails()){
+            return back()->withInput()
+            ->with('editarTarea','Edición no completada')
+            ->withErrors($validator);
+        }else{
+            $p_trabajo = p_trabajo::find($request->nidpt);
+            $p_trabajo->horas_semestre -= $tarea->horas_semestre;
+            $p_trabajo->horas_semestre += $request->nhoras_semestre;
+            $p_trabajo->save();
+            $tarea->descripcion = $request->ndescripcion;
+            $tarea->descripcion2 = $request->ndescripcion2;
+            $tarea->horas = $request->nhoras;
+            $tarea->semanas = $request->nsemanas;
+            $tarea->horas_semestre = $request->nhoras_semestre;
+            $tarea->save();
+            
+            return back()->with('Editado','Actualizado Correctamente');
+        }
+    }
     public function destroy($id){
         $tarea = tarea::find($id);
         $tarea->delete();

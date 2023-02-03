@@ -68,74 +68,54 @@
                                 <div class="row">
                                     <br><p></p></br>
                                     <div class="card">
-                                        <h5 class="card-header">Información personal</h5>
+                                        <h5 class="card-header">Información general</h5>
                                         <div class="card-body">
                                             <h5 class="card-title"></h5> 
                                             @foreach($p_trabajos as $p_trabajo)
                                                 @if($p_trabajo->id==$id_p_trabajo)
 
-                                                <table class="table table-bordered border-dark table-hover">
+                                                <table class="table table-bordered border-white-500 table-hover">
                                                     
                                                     <tbody>
                                                         <tr>
-                                                            <td class="table-primary border-dark" >Facultad</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombre_facultad}}</td>
-                                                            <td class="table-primary border-dark">Teléfono</td>
+                                                            <td class="table-primary border-primary-100" >Facultad</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombre_facultad}}</td>
+                                                            <td class="table-primary border-primary-100">Teléfono</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Nombre del programa</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombre_programa}}</td>
-                                                            <td class="border-dark">{{$p_trabajo->telefono}}</td>
+                                                            <td class="table-primary border-primary-100">Nombre del programa</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombre_programa}}</td>
+                                                            <td class="border-white-500">{{$p_trabajo->telefono}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark" >Correo institucional</td>
-                                                            <td class="border-dark">{{$p_trabajo->email}}</td>
-                                                            <td class="table-primary border-dark">Dirección</td>
+                                                            <td class="table-primary border-primary-100" >Correo institucional</td>
+                                                            <td class="border-white-500">{{$p_trabajo->email}}</td>
+                                                            <td class="table-primary border-primary-100">Dirección</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Tipo de documento</td>
-                                                            <td class="border-dark">{{$p_trabajo->n_tipo_documento}}</td>
-                                                            <td class="border-dark">{{$p_trabajo->direccion}}</td>
+                                                            <td class="table-primary border-primary-100">Tipo de documento</td>
+                                                            <td class="border-white-500">{{$p_trabajo->n_tipo_documento}}</td>
+                                                            <td class="border-white-500">{{$p_trabajo->direccion}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Número de documento</td>
-                                                            <td class="border-dark">{{$p_trabajo->n_documento}}</td>
-                                                            <td class="table-primary border-dark">Escalafón</td>
+                                                            <td class="table-primary border-primary-100">Número de documento</td>
+                                                            <td class="border-white-500">{{$p_trabajo->n_documento}}</td>
+                                                            <td class="table-primary border-primary-100">Escalafón</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Nombres</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombres}} {{$p_trabajo->apellidos}}</td>
-                                                            <td class="border-dark">{{$p_trabajo->escalafon}}</td>
+                                                            <td class="table-primary border-primary-100">Nombres</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombres}} {{$p_trabajo->apellidos}}</td>
+                                                            <td class="border-white-500">{{$p_trabajo->escalafon}}</td>
                                                             
                                                         </tr>
-                                                    </tbody>
-                                                    </table>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <br>
-                                    </br>
-                                    <div class="card">
-                                        <h5 class="card-header">Información general</h5>
-                                        <div class="card-body">
-                                            
-                                            <h5 class="card-title"></h5>
-                                            </form>
-                                            @foreach($p_trabajos as $p_trabajo)
-                                                @if($p_trabajo->id==$id_p_trabajo)
-
-                                                <table class="table table-bordered border-dark table-hover">
-                                                    <tbody>
                                                         <tr>
-                                                            <td class="table-primary border-dark" >Tipo de vinculación</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombre_tipo_vinculacion}}</td>
-                                                            <td class="table-primary border-dark">NPT</td>
+                                                            <td class="table-primary border-primary-100">Tipo de vinculación</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombre_tipo_vinculacion}}</td>
+                                                            <td class="table-primary border-primary-100">NPT</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="table-primary border-dark">Tipo de dedicación</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombre_tipo_dedicacion}}</td>
-                                                            <td class="border-dark"><?php 
+                                                        <td class="table-primary border-primary-100">Tipo de dedicación</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombre_tipo_dedicacion}}</td>
+                                                            <td class="border-white-500"><?php 
                                                                             switch($id_p_trabajo){
                                                                                 case $id_p_trabajo>0 and $id_p_trabajo <=9:
                                                                                     echo "000".$id_p_trabajo;
@@ -152,29 +132,28 @@
                                                                             } ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark" >Horas por semana</td>
-                                                            <td class="border-dark">{{$p_trabajo->horas_semana}}</td>
-                                                            <td class="table-primary border-dark">Fecha de elaboración</td>
+                                                            <td class="table-primary border-primary-100" >Horas por semana</td>
+                                                            <td class="border-white-500">{{$p_trabajo->horas_semana}}</td>
+                                                            <td class="table-primary border-primary-100">Fecha de elaboración</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Horas por semestre</td>
-                                                            <td class="border-dark">{{$p_trabajo->horas_semestre}}</td>
-                                                            <td class="border-dark">{{$p_trabajo->created_at}}</td>
+                                                            <td class="table-primary border-primary-100">Horas por semestre</td>
+                                                            <td class="border-white-500">{{$p_trabajo->horas_semestre}}</td>
+                                                            <td class="border-white-500">{{$p_trabajo->created_at}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="table-primary border-dark">Periodo académico</td>
-                                                            <td class="border-dark">{{$p_trabajo->nombre_semestre}}</td>    
+                                                            <td class="table-primary border-primary-100">Periodo académico</td>
+                                                            <td class="border-white-500">{{$p_trabajo->nombre_semestre}}</td>    
                                                         </tr>
                                                     </tbody>
                                                 </table>
-
                                                 @endif
                                             @endforeach
-                                            
                                         </div>
                                     </div>
-
-                                        
+                                    <br>
+                                    </br>
+                                                                            
                                     </div>
                                 </div>
                             </div>
@@ -245,10 +224,12 @@
                                                                                 <div class="p-2">
                                                                                     <button class="btn btn-round btnEditar" data-toggle="modal" data-target="#ModalEditarTarea"
                                                                                         data-id="{{ $tarea->id }}"
+                                                                                        data-idpt="{{$id_p_trabajo}}"
+                                                                                        data-idact="{{$tarea->id_actividad}}"
                                                                                         data-descripcion="{{ $tarea->descripcion }}"
                                                                                         data-descripcion2="{{ $tarea->descripcion2 }}"
                                                                                         data-horas="{{ $tarea->horas }}"
-                                                                                        data-horas_semestre="{{ $tarea->horas_semestre }}"
+                                                                                        data-horassemestre="{{ $tarea->horas_semestre }}"
                                                                                         data-semanas="{{ $tarea->semanas }}"
                                                                                         ><i class="fa fa-edit"></i>
                                                                                     </button>
@@ -495,32 +476,32 @@
                     <input class="form-control" name="ndescripcion" type="text" id="descripcionedit" title="Título de la tarea" placeholder="Titulo de la tarea">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" name="nhoras" type="number" id="e1" oninput="calcular2()" placeholder="Horas semanales" title="Ingresar la cantidad de horas a la semana que se realizará la actividad">
+                    <input class="form-control" name="nhoras" type="number" id="e1"  onblur="calcular2()" oninput="calcular2()" placeholder="Horas semanales" title="Ingresar la cantidad de horas a la semana que se realizará la actividad">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" name="nsemanas" type="number" id="e2" onload="calcular2()" placeholder="cantidad de semanas" title="Ingresar la cantidad de semanas en que se realizará la actividad">
+                    <input class="form-control" name="nsemanas" type="number" id="e2" onblur="calcular2()" oninput="calcular2()" placeholder="cantidad de semanas" title="Ingresar la cantidad de semanas en que se realizará la actividad">
                 </div>
                 <div class="form-group">
                     <label >Horas semestrales: </label>
-                    <label class="text-success" onload="calcular2()" id="horas_semestreedit"><script> document.write(calcular2());</script></label>
-                    <input name="horas_semestre" type="hidden" id="e3">
+                    <label class="text-success" id="horas_semestreedit"><script> document.write(calcular2());</script></label>
+                    <input name="nhoras_semestre" type="hidden" id="e3">
                 </div>
                 <div class="form-group">
-                    
-                    <input class="form-control" name="idpt" type="hidden" id="idpt" value="{{$id_p_trabajo}}">
-                    <input class="form-control" name="idact" type="hidden" id="idact" value="{{$id_actividad}}">
+                    <input class="form-control" name="idt" type="hidden" id="idEdit">
+                    <input class="form-control" name="nidpt" type="hidden" id="idptEdit" >
+                    <input class="form-control" name="idact" type="hidden" id="idact" value="idactEdit">
                     
                 </div>
 
                 <div class="form-group">
-                    <label for="descripcion2">Descripción</label>
-                    <textarea name="descripcion" id="descripcion"msg cols="30" rows="5" class="form-control" style="background-color: white;"></textarea>
+                    <label for="descripcionedit">Descripción</label>
+                    <textarea name="ndescripcion2" id="descripcion2edit" msg cols="30" rows="5" class="form-control" style="background-color: white;"></textarea>
                 </div>
             </div>
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Agregar</button>
+                <button type="submit" class="btn btn-primary btnActualizar">Actualizar</button>
             </div>
         </form>
         </div>
@@ -585,6 +566,8 @@
                 $("#ModalAgregarActividad").modal('show');
             @elseif($message = Session::get('Error2'))
                 $("#ModalAgregarTarea").modal('show');
+            @elseif($message = Session::get('editarTarea'))
+                $("#ModalEditarTarea").modal('show');
             @elseif($message = Session::get('Correcto'))
                 Swal.fire({
                 title: '¡Perfecto!',
@@ -596,6 +579,13 @@
                 Swal.fire({
                 title: '¡Perfecto!',
                 text: 'Eliminado correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                });
+            @elseif($message = Session::get('Editado'))
+                Swal.fire({
+                title: '¡Perfecto!',
+                text: 'Información actualizada correctamente',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
                 });
@@ -613,13 +603,15 @@
             $(".btnModalEliminarActividad").click(function(){
                 $("#formEli_"+idEliminar).submit();
             });
+            
             $(".btnEditar").click(function(){
                 $("#idEdit").val($(this).data('id'));
+                $("#idptEdit").val($(this).data('idpt'));
                 $("#descripcionedit").val($(this).data('descripcion'));
                 $("#descripcion2edit").val($(this).data('descripcion2'));
                 $("#e1").val($(this).data('horas'));
                 $("#e2").val($(this).data('semanas'));
-                $("#horas_semestreedit").val($(this).data('horas_semestre'));
+                $("#horas_semestreedit").val($(this).data('horassemestre'));
             });
         });
 </script>

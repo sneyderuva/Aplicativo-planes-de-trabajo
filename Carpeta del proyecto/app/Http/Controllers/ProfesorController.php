@@ -157,7 +157,33 @@ class ProfesorController extends Controller
     }
 
     public function actividades(){
-        return view('profesor.actividades');
+
+        $semestres = \DB::table('semestres')
+            ->select('semestres.*')
+            ->orderBy('id','DESC')
+            ->get();
+
+        $p_trabajos = \DB::table('p_trabajos')
+            ->where('p_trabajos.id_profesor','=',Auth::User()->id)
+            ->join('semestres','semestres.id','=','p_trabajos.id_semestre')
+            ->select('p_trabajos.*','semestres.inicio','semestres.final','semestres.nombre_semestre')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $tareas = \DB::table('tareas')
+            ->select('tareas.*')
+            ->orderBy('id', 'DESC')
+            ->get();
+        $actividades = \DB::table('esactividads')
+            ->select('Esactividads.*')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('profesor.actividades')
+            ->with('p_trabajos',$p_trabajos)
+            ->with('tareas',$tareas)
+            ->with('semestres',$semestres)
+            ->with('actividades',$actividades);
     }
 
     public function store(Request $request){
